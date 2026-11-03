@@ -1,0 +1,16 @@
+{
+  "short_name": "MAFTH",
+  "name": "MAFTH — Premium Indian Marketplace",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#FAF7F2",
+  "theme_color": "#0B0B0B",
+  "display": "standalone",
+  "orientation": "portrait"
+}

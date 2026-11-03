@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --white: #FFFFFF;
+  --beige-50: #FAF7F2;
+  --beige-100: #F3EDE3;
+  --beige-200: #ECE3D5;
+  --beige-300: #E3D8C6;
+  --beige-400: #D0C1AB;
+  --beige-500: #B9A68A;
+  --black: #0B0B0B;
+  --grey-600: #5E5A54;
+  --brand-pink: #FF007A;
+  --brand-yellow: #FFE600;
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--black);
+    background-color: var(--white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.015em;
+  }
+
+  /* Fluid typography clamp utilities */
+  .text-display-1 {
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.1;
+  }
+  
+  .text-display-2 {
+    font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+    line-height: 1.15;
+  }
+
+  .text-title-1 {
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    line-height: 1.25;
+  }
+}
+
+/* Custom scrollbars matching beige/black theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D0C1AB;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B9A68A;
+}
+
+/* Smooth hide scrollbars for horizontal snapping rails */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Subtle image shimmer placeholder */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #F3EDE3 25%, #FAF7F2 50%, #F3EDE3 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
