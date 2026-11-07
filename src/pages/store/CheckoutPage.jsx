@@ -30,7 +30,7 @@ export default function CheckoutPage() {
   if (items.length === 0) {
     return (
       <div className="py-20 text-center">
-        <h2 className="font-serif text-2xl font-bold mb-2">No items to checkout</h2>
+        <h2 className="font-display text-2xl font-bold mb-2">No items to checkout</h2>
         <Link to="/" className="text-xs underline font-semibold">Explore Store</Link>
       </div>
     );
@@ -40,7 +40,7 @@ export default function CheckoutPage() {
     <div className="bg-white min-h-screen py-10">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         
-        <h1 className="font-serif text-3xl font-bold text-black mb-8 pb-4 border-b border-beige-300">
+        <h1 className="font-display text-3xl font-bold text-black mb-8 pb-4 border-b border-mist-300">
           Secure Marketplace Checkout
         </h1>
 
@@ -50,8 +50,8 @@ export default function CheckoutPage() {
           <form onSubmit={handlePlaceOrder} className="lg:col-span-7 space-y-6">
             
             {/* Step 1: Delivery Address */}
-            <div className="p-5 border border-beige-300 rounded bg-white space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-beige-200">
+            <div className="p-5 border border-mist-300 rounded bg-white space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-mist-200">
                 <span className="text-xs font-bold uppercase tracking-wider text-black flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-black" /> 1. Select Delivery Address
                 </span>
@@ -66,8 +66,8 @@ export default function CheckoutPage() {
                     key={addr.id}
                     className={`block p-3.5 border rounded cursor-pointer transition-colors ${
                       selectedAddress === addr.id
-                        ? 'border-black bg-beige-50/80 shadow-sm'
-                        : 'border-beige-300 hover:border-beige-500 bg-white'
+                        ? 'border-brand-600 bg-mist-50/80 shadow-sm'
+                        : 'border-mist-300 hover:border-mist-500 bg-white'
                     }`}
                   >
                     <div className="flex items-start gap-3">
@@ -81,7 +81,7 @@ export default function CheckoutPage() {
                       <div className="text-xs">
                         <div className="flex items-center gap-2">
                           <span className="font-bold text-black">{addr.name}</span>
-                          <span className="text-[10px] bg-beige-200 px-1.5 py-0.5 rounded font-medium">{addr.type}</span>
+                          <span className="text-[10px] bg-mist-200 px-1.5 py-0.5 rounded font-medium">{addr.type}</span>
                         </div>
                         <p className="text-grey-600 mt-1 leading-relaxed">
                           {addr.addressLine}, {addr.city}, {addr.state} — {addr.pincode}
@@ -95,8 +95,8 @@ export default function CheckoutPage() {
             </div>
 
             {/* Step 2: Payment Method */}
-            <div className="p-5 border border-beige-300 rounded bg-white space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-beige-200">
+            <div className="p-5 border border-mist-300 rounded bg-white space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-mist-200">
                 <span className="text-xs font-bold uppercase tracking-wider text-black flex items-center gap-2">
                   <CreditCard className="w-4 h-4 text-black" /> 2. Choose Payment Method
                 </span>
@@ -115,8 +115,8 @@ export default function CheckoutPage() {
                     key={pay.id}
                     className={`block p-3.5 border rounded cursor-pointer transition-colors ${
                       paymentMethod === pay.id
-                        ? 'border-black bg-beige-50/80 shadow-sm'
-                        : 'border-beige-300 hover:border-beige-500 bg-white'
+                        ? 'border-brand-600 bg-mist-50/80 shadow-sm'
+                        : 'border-mist-300 hover:border-mist-500 bg-white'
                     }`}
                   >
                     <div className="flex items-start gap-3">
@@ -137,7 +137,7 @@ export default function CheckoutPage() {
               </div>
 
               {paymentMethod === 'upi' && (
-                <div className="pt-3 border-t border-beige-200">
+                <div className="pt-3 border-t border-mist-200">
                   <label className="text-[11px] font-bold uppercase tracking-wider text-black block mb-1.5">
                     Enter UPI ID (VPA)
                   </label>
@@ -145,7 +145,7 @@ export default function CheckoutPage() {
                     type="text"
                     value={upiId}
                     onChange={(e) => setUpiId(e.target.value)}
-                    className="w-full text-xs px-3 py-2.5 border border-beige-300 rounded focus:border-black focus:outline-none"
+                    className="w-full text-xs px-3 py-2.5 border border-mist-300 rounded focus:border-brand-600 focus:outline-none"
                     placeholder="mobilenumber@upi"
                   />
                 </div>
@@ -155,7 +155,7 @@ export default function CheckoutPage() {
             <button
               type="submit"
               disabled={isProcessing}
-              className="w-full py-4 bg-black text-white text-xs uppercase tracking-wider font-bold rounded hover:bg-black/90 transition-all flex items-center justify-center gap-2 shadow-subtle disabled:opacity-50"
+              className="w-full py-4 bg-brand-700 text-white text-xs uppercase tracking-wider font-bold rounded hover:bg-brand-800 transition-all flex items-center justify-center gap-2 shadow-subtle disabled:opacity-50"
             >
               {isProcessing ? (
                 <span>Confirming Order with Regional Artisans...</span>
@@ -169,15 +169,15 @@ export default function CheckoutPage() {
           </form>
 
           {/* Right Summary Panel */}
-          <div className="lg:col-span-5 sticky top-24 p-5 rounded border border-beige-300 bg-beige-50 space-y-4">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-black pb-2 border-b border-beige-200">
+          <div className="lg:col-span-5 sticky top-24 p-5 rounded border border-mist-300 bg-mist-50 space-y-4">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-black pb-2 border-b border-mist-200">
               Items in this Shipment ({items.length})
             </h3>
 
-            <div className="divide-y divide-beige-200 max-h-72 overflow-y-auto no-scrollbar">
+            <div className="divide-y divide-mist-200 max-h-72 overflow-y-auto no-scrollbar">
               {items.map((it) => (
                 <div key={it.itemKey} className="py-2.5 flex items-center gap-3">
-                  <img src={it.image} alt={it.title} className="w-12 h-14 object-cover rounded border border-beige-300" />
+                  <img src={it.image} alt={it.title} className="w-12 h-14 object-cover rounded border border-mist-300" />
                   <div className="flex-1 min-w-0 text-xs">
                     <p className="font-medium text-black truncate">{it.title}</p>
                     <p className="text-[11px] text-grey-500">Qty: {it.quantity} • {it.selectedSize}</p>
@@ -187,12 +187,12 @@ export default function CheckoutPage() {
               ))}
             </div>
 
-            <div className="pt-3 border-t border-beige-300 space-y-1.5 text-xs text-grey-700">
+            <div className="pt-3 border-t border-mist-300 space-y-1.5 text-xs text-grey-700">
               <div className="flex justify-between">
                 <span>Shipping & Doorstep Pickup Fee</span>
                 <span className="text-status-success font-semibold">FREE</span>
               </div>
-              <div className="flex justify-between text-sm font-bold text-black pt-2 border-t border-beige-200">
+              <div className="flex justify-between text-sm font-bold text-black pt-2 border-t border-mist-200">
                 <span>Total Amount to Pay</span>
                 <span>{formatPrice(finalTotal)}</span>
               </div>

@@ -99,13 +99,13 @@ export default function HomePage() {
             subtitle="Department Showcase • 01"
             categorySlug="mens-fashion"
             products={mensFashion}
-            bg="bg-beige-50"
+            bg="bg-mist-50"
             count={4}
           />
         </ScrollReveal>
       )}
 
-      {/* 7. EDITORIAL BANNER 01 (BEIGE BAND) */}
+      {/* 7. EDITORIAL BANNER 01 (LIGHT BAND) */}
       <ScrollReveal variant="clip-reveal" duration={0.9}>
         <EditorialBanner inverted={false} />
       </ScrollReveal>
@@ -129,7 +129,7 @@ export default function HomePage() {
         <FeaturedVendorsRail />
       </ScrollReveal>
 
-      {/* 10. EDITORIAL BANNER 02 (BLACK BAND) */}
+      {/* 10. EDITORIAL BANNER 02 (EMERALD BAND) */}
       <ScrollReveal variant="clip-reveal" duration={0.9}>
         <EditorialBanner inverted={true} />
       </ScrollReveal>
@@ -142,7 +142,7 @@ export default function HomePage() {
             subtitle="Department Showcase • 03"
             categorySlug="electronics"
             products={electronics}
-            bg="bg-beige-50"
+            bg="bg-mist-50"
             count={4}
           />
         </ScrollReveal>

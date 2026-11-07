@@ -10,10 +10,10 @@ export default function NotFoundPage() {
         <div className="flex justify-center mb-6">
           <Logo size="lg" />
         </div>
-        <span className="text-[11px] uppercase font-bold text-beige-500 tracking-widest block mb-2">
+        <span className="text-[11px] uppercase font-bold text-brand-600 tracking-widest block mb-2">
           Error 404 • Page Not Found
         </span>
-        <h1 className="font-serif text-3xl font-bold text-black mb-3">
+        <h1 className="font-display text-3xl font-bold text-black mb-3">
           This piece seems to be out of the catalogue
         </h1>
         <p className="text-xs text-grey-600 mb-8 leading-relaxed">
@@ -21,7 +21,7 @@ export default function NotFoundPage() {
         </p>
         <Link
           to="/"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white text-xs uppercase tracking-wider font-semibold rounded hover:bg-black/90 transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-brand-700 text-white text-xs uppercase tracking-wider font-semibold rounded hover:bg-brand-800 transition-colors"
         >
           <Home className="w-4 h-4" />
           <span>Back to MAFTH Home</span>

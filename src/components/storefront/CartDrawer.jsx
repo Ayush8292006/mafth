@@ -60,20 +60,20 @@ export default function CartDrawer() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-              className="w-screen max-w-md bg-white shadow-2xl flex flex-col border-l border-beige-300"
+              className="w-screen max-w-md bg-white shadow-2xl flex flex-col border-l border-mist-300"
             >
               {/* Header */}
-              <div className="p-4 border-b border-beige-300 flex items-center justify-between bg-beige-50">
+              <div className="p-4 border-b border-mist-300 flex items-center justify-between bg-mist-50">
                 <div className="flex items-center gap-2">
                   <ShoppingBag className="w-5 h-5 text-black" />
-                  <h2 className="font-serif text-lg font-bold text-black">Your Shopping Bag</h2>
-                  <span className="text-xs bg-beige-200 text-grey-700 px-2 py-0.5 rounded-full font-medium">
+                  <h2 className="font-display text-lg font-bold text-black">Your Shopping Bag</h2>
+                  <span className="text-xs bg-mist-200 text-grey-700 px-2 py-0.5 rounded-full font-medium">
                     {items.length} {items.length === 1 ? 'item' : 'items'}
                   </span>
                 </div>
                 <button
                   onClick={closeDrawer}
-                  className="p-1.5 rounded-full text-grey-600 hover:text-black hover:bg-beige-200 transition-colors"
+                  className="p-1.5 rounded-full text-grey-600 hover:text-black hover:bg-mist-200 transition-colors"
                   aria-label="Close bag drawer"
                 >
                   <X className="w-5 h-5" />
@@ -81,7 +81,7 @@ export default function CartDrawer() {
               </div>
 
               {/* Delivery notice */}
-              <div className="px-4 py-2.5 bg-beige-100 text-xs text-grey-700 border-b border-beige-300 flex items-center justify-between">
+              <div className="px-4 py-2.5 bg-mist-100 text-xs text-grey-700 border-b border-mist-300 flex items-center justify-between">
                 <span>
                   Delivering to <strong className="text-black">{deliveryCity} ({deliveryPincode})</strong>
                 </span>
@@ -94,16 +94,16 @@ export default function CartDrawer() {
               <div className="flex-1 overflow-y-auto p-4 space-y-4">
                 {items.length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center text-center py-16 px-6">
-                    <div className="w-16 h-16 rounded-full bg-beige-100 flex items-center justify-center text-beige-500 mb-4">
+                    <div className="w-16 h-16 rounded-full bg-mist-100 flex items-center justify-center text-brand-600 mb-4">
                       <ShoppingBag className="w-8 h-8" />
                     </div>
-                    <h3 className="font-serif text-lg font-bold text-black mb-1">Your bag is empty</h3>
+                    <h3 className="font-display text-lg font-bold text-black mb-1">Your bag is empty</h3>
                     <p className="text-sm text-grey-600 mb-6">
                       Discover hand-crafted products, artisanal weaves and precision audio from India’s finest makers.
                     </p>
                     <button
                       onClick={closeDrawer}
-                      className="px-6 py-2.5 bg-black text-white text-xs uppercase tracking-wider font-semibold rounded hover:bg-black/90 transition-colors"
+                      className="px-6 py-2.5 bg-brand-700 text-white text-xs uppercase tracking-wider font-semibold rounded hover:bg-brand-800 transition-colors"
                     >
                       Explore Marketplace
                     </button>
@@ -112,16 +112,16 @@ export default function CartDrawer() {
                   items.map((item) => (
                     <div
                       key={item.itemKey}
-                      className="flex gap-3 pb-4 border-b border-beige-200 last:border-0"
+                      className="flex gap-3 pb-4 border-b border-mist-200 last:border-0"
                     >
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="w-20 h-24 object-cover rounded bg-beige-100 border border-beige-300 flex-shrink-0"
+                        className="w-20 h-24 object-cover rounded bg-mist-100 border border-mist-300 flex-shrink-0"
                       />
                       <div className="flex-1 min-w-0 flex flex-col justify-between">
                         <div>
-                          <div className="text-[11px] text-beige-500 uppercase tracking-wider font-medium truncate">
+                          <div className="text-[11px] text-brand-600 uppercase tracking-wider font-medium truncate">
                             {item.vendorName}
                           </div>
                           <h4 className="text-xs font-semibold text-black line-clamp-2 leading-tight">
@@ -133,7 +133,7 @@ export default function CartDrawer() {
                         </div>
 
                         <div className="flex items-center justify-between mt-2 pt-1">
-                          <div className="flex items-center gap-1.5 border border-beige-300 rounded bg-beige-50 px-1 py-0.5">
+                          <div className="flex items-center gap-1.5 border border-mist-300 rounded bg-mist-50 px-1 py-0.5">
                             <button
                               onClick={() => updateQuantity(item.itemKey, item.quantity - 1)}
                               className="p-1 hover:text-black text-grey-600"
@@ -179,10 +179,10 @@ export default function CartDrawer() {
 
               {/* Coupon and Summary footer */}
               {items.length > 0 && (
-                <div className="p-4 bg-beige-50 border-t border-beige-300 space-y-3">
+                <div className="p-4 bg-mist-50 border-t border-mist-300 space-y-3">
                   {/* Coupon section */}
                   {appliedCoupon ? (
-                    <div className="p-2.5 bg-beige-100 border border-beige-300 rounded flex items-center justify-between text-xs">
+                    <div className="p-2.5 bg-mist-100 border border-mist-300 rounded flex items-center justify-between text-xs">
                       <div className="flex items-center gap-1.5 text-status-success font-medium">
                         <Tag className="w-3.5 h-3.5" />
                         <span>Code <strong>{appliedCoupon.code}</strong> applied ({appliedCoupon.label})</span>
@@ -201,11 +201,11 @@ export default function CartDrawer() {
                         placeholder="Coupon (e.g. MAFTH10)"
                         value={couponCode}
                         onChange={(e) => setCouponCode(e.target.value)}
-                        className="flex-1 text-xs px-3 py-2 bg-white border border-beige-300 rounded focus:border-black focus:outline-none uppercase placeholder:normal-case"
+                        className="flex-1 text-xs px-3 py-2 bg-white border border-mist-300 rounded focus:border-brand-600 focus:outline-none uppercase placeholder:normal-case"
                       />
                       <button
                         type="submit"
-                        className="px-4 py-2 bg-black text-white text-xs font-semibold rounded hover:bg-black/90 transition-colors"
+                        className="px-4 py-2 bg-brand-700 text-white text-xs font-semibold rounded hover:bg-brand-800 transition-colors"
                       >
                         Apply
                       </button>
@@ -223,7 +223,7 @@ export default function CartDrawer() {
                   )}
 
                   {/* Calculations */}
-                  <div className="space-y-1.5 text-xs text-grey-700 pt-1 border-t border-beige-200">
+                  <div className="space-y-1.5 text-xs text-grey-700 pt-1 border-t border-mist-200">
                     <div className="flex justify-between">
                       <span>Total MRP</span>
                       <span>{formatPrice(totalMrp)}</span>
@@ -238,7 +238,7 @@ export default function CartDrawer() {
                       <span>Convenience & Delivery</span>
                       <span className="text-status-success font-medium">FREE</span>
                     </div>
-                    <div className="flex justify-between pt-2 border-t border-beige-300 text-sm font-bold text-black">
+                    <div className="flex justify-between pt-2 border-t border-mist-300 text-sm font-bold text-black">
                       <span>Total Payable</span>
                       <span>{formatPrice(finalTotal)}</span>
                     </div>
@@ -249,7 +249,7 @@ export default function CartDrawer() {
                     <Link
                       to="/checkout"
                       onClick={closeDrawer}
-                      className="w-full flex items-center justify-center gap-2 py-3 bg-black text-white text-xs uppercase tracking-wider font-semibold rounded hover:bg-black/90 transition-transform active:scale-[0.99] shadow-subtle"
+                      className="w-full flex items-center justify-center gap-2 py-3 bg-brand-700 text-white text-xs uppercase tracking-wider font-semibold rounded hover:bg-brand-800 transition-transform active:scale-[0.99] shadow-subtle"
                     >
                       <span>Proceed to Checkout</span>
                       <ArrowRight className="w-4 h-4" />

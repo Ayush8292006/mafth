@@ -37,43 +37,43 @@ export default function ProfilePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Profile Header */}
-        <div className="p-6 bg-beige-50 border border-beige-300 rounded mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="p-6 bg-mist-50 border border-mist-300 rounded mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <img
               src={user.avatar}
               alt={user.name}
-              className="w-16 h-16 rounded-full border-2 border-black object-cover"
+              className="w-16 h-16 rounded-full border-2 border-brand-600 object-cover"
             />
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="font-serif text-xl font-bold text-black">{user.name}</h1>
-                <span className="text-[10px] uppercase font-bold bg-black text-white px-2 py-0.5 rounded">
+                <h1 className="font-display text-xl font-bold text-black">{user.name}</h1>
+                <span className="text-[10px] uppercase font-bold bg-brand-700 text-white px-2 py-0.5 rounded">
                   {user.loyaltyTier}
                 </span>
               </div>
               <p className="text-xs text-grey-600 mt-0.5">{user.email} • {user.phone}</p>
-              <p className="text-[11px] text-beige-500 mt-1">Patron Member since {user.joinedDate}</p>
+              <p className="text-[11px] text-brand-600 mt-1">Patron Member since {user.joinedDate}</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 border-t sm:border-t-0 sm:border-l border-beige-300 pt-3 sm:pt-0 sm:pl-6 text-xs">
+          <div className="flex items-center gap-6 border-t sm:border-t-0 sm:border-l border-mist-300 pt-3 sm:pt-0 sm:pl-6 text-xs">
             <div>
               <span className="text-[10px] text-grey-500 uppercase block">MAFTH Wallet</span>
-              <span className="font-serif text-lg font-bold text-black">{formatPrice(user.walletBalance)}</span>
+              <span className="font-display text-lg font-bold text-black">{formatPrice(user.walletBalance)}</span>
             </div>
             <div>
               <span className="text-[10px] text-grey-500 uppercase block">Active Orders</span>
-              <span className="font-serif text-lg font-bold text-black">1 In Transit</span>
+              <span className="font-display text-lg font-bold text-black">1 In Transit</span>
             </div>
           </div>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-beige-300 text-xs font-semibold uppercase tracking-wider mb-8">
+        <div className="flex border-b border-mist-300 text-xs font-semibold uppercase tracking-wider mb-8">
           <button
             onClick={() => setActiveTab('orders')}
             className={`py-3 px-4 border-b-2 transition-colors flex items-center gap-2 ${
-              activeTab === 'orders' ? 'border-black text-black' : 'border-transparent text-grey-500 hover:text-black'
+              activeTab === 'orders' ? 'border-brand-600 text-black' : 'border-transparent text-grey-500 hover:text-black'
             }`}
           >
             <Package className="w-4 h-4" />
@@ -82,7 +82,7 @@ export default function ProfilePage() {
           <button
             onClick={() => setActiveTab('addresses')}
             className={`py-3 px-4 border-b-2 transition-colors flex items-center gap-2 ${
-              activeTab === 'addresses' ? 'border-black text-black' : 'border-transparent text-grey-500 hover:text-black'
+              activeTab === 'addresses' ? 'border-brand-600 text-black' : 'border-transparent text-grey-500 hover:text-black'
             }`}
           >
             <MapPin className="w-4 h-4" />
@@ -94,8 +94,8 @@ export default function ProfilePage() {
         {activeTab === 'orders' && (
           <div className="space-y-6">
             {mockOrders.map((ord) => (
-              <div key={ord.id} className="border border-beige-300 rounded overflow-hidden bg-white">
-                <div className="bg-beige-50 p-4 border-b border-beige-300 flex flex-col sm:flex-row sm:items-center justify-between text-xs gap-2">
+              <div key={ord.id} className="border border-mist-300 rounded overflow-hidden bg-white">
+                <div className="bg-mist-50 p-4 border-b border-mist-300 flex flex-col sm:flex-row sm:items-center justify-between text-xs gap-2">
                   <div className="flex items-center gap-4">
                     <div>
                       <span className="text-[10px] text-grey-500 uppercase block">Order ID</span>
@@ -133,7 +133,7 @@ export default function ProfilePage() {
                         <div key={step} className="flex flex-col items-center">
                           <div
                             className={`w-full h-1.5 rounded-full mb-2 ${
-                              isComplete ? 'bg-black' : 'bg-beige-200'
+                              isComplete ? 'bg-brand-700' : 'bg-mist-200'
                             }`}
                           />
                           <span className={isComplete ? 'font-bold text-black' : 'text-grey-400'}>
@@ -157,10 +157,10 @@ export default function ProfilePage() {
         {activeTab === 'addresses' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {addresses.map((addr) => (
-              <div key={addr.id} className="p-5 border border-beige-300 rounded bg-beige-50/50 flex flex-col justify-between">
+              <div key={addr.id} className="p-5 border border-mist-300 rounded bg-mist-50/50 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider bg-beige-200 text-black px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-bold uppercase tracking-wider bg-mist-200 text-black px-2 py-0.5 rounded">
                       {addr.type}
                     </span>
                     {addr.isDefault && (
@@ -169,7 +169,7 @@ export default function ProfilePage() {
                       </span>
                     )}
                   </div>
-                  <h3 className="font-serif text-base font-bold text-black">{addr.name}</h3>
+                  <h3 className="font-display text-base font-bold text-black">{addr.name}</h3>
                   <p className="text-xs text-grey-600 mt-1 leading-relaxed">
                     {addr.addressLine}, {addr.city}, {addr.state} — <strong>{addr.pincode}</strong>
                   </p>
