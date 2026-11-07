@@ -4,12 +4,12 @@ import { categories } from '../../data/categories';
 
 export default function CategoryIconStrip() {
   return (
-    <section className="bg-white border-b border-beige-300 py-6">
+    <section className="bg-white border-b border-mist-300 py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Strip Header */}
         <div className="flex items-center justify-between mb-4">
-          <span className="text-[10px] uppercase font-bold text-beige-500 tracking-wider">
+          <span className="text-[10px] uppercase font-bold text-brand-600 tracking-wider">
             Explore Marketplace Departments
           </span>
           <Link
@@ -30,8 +30,8 @@ export default function CategoryIconStrip() {
               style={{ transitionDelay: `${idx * 25}ms` }}
             >
               {/* Circular Tile with 1px border */}
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 border border-beige-300 group-hover:border-black transition-colors duration-300 bg-beige-50">
-                <div className="w-full h-full rounded-full overflow-hidden bg-beige-100">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 border border-mist-300 group-hover:border-brand-600 transition-colors duration-300 bg-mist-50">
+                <div className="w-full h-full rounded-full overflow-hidden bg-mist-100">
                   <img
                     src={cat.image}
                     alt={cat.name}

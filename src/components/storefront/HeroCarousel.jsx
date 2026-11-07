@@ -20,9 +20,9 @@ export default function HeroCarousel() {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <section className="relative w-full bg-beige-50 border-b border-beige-300 overflow-hidden">
+    <section className="relative w-full bg-mist-50 border-b border-mist-300 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-        <div className="relative aspect-[16/9] sm:aspect-[21/9] lg:aspect-[24/9] w-full rounded overflow-hidden border border-beige-300 shadow-sm bg-black">
+        <div className="relative aspect-[16/9] sm:aspect-[21/9] lg:aspect-[24/9] w-full rounded-2xl overflow-hidden shadow-card bg-brand-800">
           
           <AnimatePresence mode="wait">
             <motion.div
@@ -40,29 +40,29 @@ export default function HeroCarousel() {
               />
 
               {/* Gradient Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-950/90 via-brand-900/55 to-transparent" />
 
               {/* Slide Content */}
               <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-12 md:px-16 max-w-2xl text-white">
-                <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-beige-300 mb-2">
+                <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-marigold-300 mb-3">
                   {slides[currentSlide].tag} • {slides[currentSlide].badge}
                 </span>
 
-                <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-2 leading-tight">
+                <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-2 leading-tight">
                   {slides[currentSlide].title}
                 </h2>
 
-                <p className="text-xs sm:text-sm text-beige-100 mb-6 font-light max-w-lg leading-relaxed hidden sm:block">
-                  {slides[currentSlide].subtitle}. Sourced directly from certified regional weaver guilds and registered master workshops.
+                <p className="text-xs sm:text-sm text-mist-100 mb-6 font-light max-w-lg leading-relaxed hidden sm:block">
+                  {slides[currentSlide].subtitle}. Sold directly by verified vendors, delivered across India.
                 </p>
 
                 <div>
                   <Link
                     to={slides[currentSlide].link}
-                    className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 bg-white text-black text-xs uppercase tracking-wider font-bold rounded hover:bg-beige-100 transition-all active:scale-95 shadow-lift"
+                    className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 bg-marigold-400 text-black text-xs uppercase tracking-wider font-bold rounded-full hover:bg-marigold-300 transition-all active:scale-95 shadow-lift"
                   >
                     <span>{slides[currentSlide].cta}</span>
-                    <span className="font-serif">→</span>
+                    <span className="font-display">→</span>
                   </Link>
                 </div>
               </div>
@@ -93,7 +93,7 @@ export default function HeroCarousel() {
                 onClick={() => setCurrentSlide(idx)}
                 aria-label={`Go to slide ${idx + 1}`}
                 className={`h-1.5 transition-all rounded-full ${
-                  currentSlide === idx ? 'w-8 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'
+                  currentSlide === idx ? 'w-8 bg-marigold-400' : 'w-2 bg-white/40 hover:bg-white/60'
                 }`}
               />
             ))}

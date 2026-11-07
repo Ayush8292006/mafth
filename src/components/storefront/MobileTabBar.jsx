@@ -18,7 +18,7 @@ export default function MobileTabBar() {
   ];
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-beige-300 pb-[env(safe-area-inset-bottom,0px)] shadow-lift">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-mist-300 pb-[env(safe-area-inset-bottom,0px)] shadow-lift">
       <div className="grid grid-cols-5 h-14 items-center">
         {tabs.map((tab, idx) => {
           const Icon = tab.icon;
@@ -34,7 +34,7 @@ export default function MobileTabBar() {
                 <div className="relative">
                   <Icon className="w-5 h-5 text-black" />
                   {tab.badge > 0 && (
-                    <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-black text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                    <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-marigold-400 text-black text-[10px] font-bold rounded-full flex items-center justify-center">
                       {tab.badge}
                     </span>
                   )}
@@ -63,7 +63,7 @@ export default function MobileTabBar() {
                 {isActive && (
                   <motion.div
                     layoutId="activeTabIndicator"
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-black rounded-full"
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-brand-700 rounded-full"
                     transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                   />
                 )}

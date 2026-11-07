@@ -13,12 +13,13 @@ import {
   X,
   SlidersHorizontal,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  LayoutDashboard
 } from 'lucide-react';
 import Logo from '../ui/Logo';
 import { useCartStore } from '../../store/useCartStore';
 import { useWishlistStore } from '../../store/useWishlistStore';
-import { useAuthStore, ROLES } from '../../store/useAuthStore';
+import { useAuthStore, ROLES, ROLE_LABELS, ROLE_HOME } from '../../store/useAuthStore';
 import { categories } from '../../data/categories';
 import { mockApi } from '../../lib/mockApi';
 import { formatPrice } from '../../lib/utils';
@@ -27,7 +28,10 @@ export default function Header() {
   const navigate = useNavigate();
   const { getTotalCount, openDrawer, deliveryPincode, deliveryCity, setPincode } = useCartStore();
   const { getCount: getWishlistCount } = useWishlistStore();
-  const { currentRole, setRole, user } = useAuthStore();
+  const { currentRole, user: customer, isAuthenticated, staff, logout } = useAuthStore();
+  const user = staff ? { ...customer, name: staff.name, email: staff.email, loyaltyTier: ROLE_LABELS[currentRole] } : customer;
+  const isStaff = isAuthenticated && currentRole !== ROLES.USER;
+  const dashboardPath = ROLE_HOME[currentRole] || '/';
 
   const cartCount = getTotalCount();
   const wishlistCount = getWishlistCount();
@@ -110,78 +114,69 @@ export default function Header() {
   };
 
   return (
-    <header className={`sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-beige-300 transition-all duration-300 ${isScrolled ? 'shadow-card' : ''}`}>
+    <header className={`sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-mist-300 transition-all duration-300 ${isScrolled ? 'shadow-card' : ''}`}>
       {/* 1. TOP UTILITY BAR */}
-      <div className={`bg-beige-50 border-b border-beige-300 text-[11px] text-grey-600 transition-all duration-300 overflow-hidden ${isScrolled ? 'max-h-0 opacity-0 py-0' : 'max-h-10 opacity-100'}`}>
+      <div className={`bg-brand-800 text-[11px] text-white/80 transition-all duration-300 overflow-hidden ${isScrolled ? 'max-h-0 opacity-0 py-0' : 'max-h-10 opacity-100'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-8 flex items-center justify-between">
           
           {/* Location Delivery Selector */}
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsLocationModalOpen(true)}
-              className="flex items-center gap-1.5 hover:text-black transition-colors focus:outline-none"
+              className="flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none"
             >
-              <MapPin className="w-3.5 h-3.5 text-beige-500" />
+              <MapPin className="w-3.5 h-3.5 text-marigold-400" />
               <span>Deliver to:</span>
-              <strong className="text-black font-semibold underline decoration-beige-300 underline-offset-2">
+              <strong className="text-white font-semibold underline decoration-marigold-400 underline-offset-2">
                 {deliveryCity} {deliveryPincode}
               </strong>
             </button>
-            <span className="hidden sm:inline-block text-beige-300">|</span>
-            <span className="hidden sm:inline-flex items-center gap-1 text-grey-600">
-              <ShieldCheck className="w-3 h-3 text-status-success" />
-              100% Verified Indian Artisans & Brands
+            <span className="hidden sm:inline-block text-white/30">|</span>
+            <span className="hidden sm:inline-flex items-center gap-1 text-white/80">
+              <ShieldCheck className="w-3 h-3 text-marigold-400" />
+              Verified vendors across 10 departments
             </span>
           </div>
 
-          {/* Quick Links & Role Switcher for Demo */}
+          {/* Quick Links */}
           <div className="flex items-center gap-4">
             <Link
-              to="/vendor"
-              className="flex items-center gap-1 hover:text-black font-medium transition-colors"
+              to="/partner-with-us"
+              className="flex items-center gap-1 text-marigold-300 hover:text-marigold-200 font-semibold transition-colors"
             >
               <Store className="w-3 h-3" />
-              <span>Become a Seller</span>
+              <span>Sell on MAFTH</span>
             </Link>
 
-            <span className="text-beige-300">|</span>
+            <span className="text-white/30 hidden md:inline">|</span>
 
             <Link
               to="/help"
-              className="flex items-center gap-1 hover:text-black transition-colors hidden md:flex"
+              className="items-center gap-1 hover:text-white transition-colors hidden md:flex"
             >
               <HelpCircle className="w-3 h-3" />
-              <span>24x7 Concierge</span>
+              <span>Help Centre</span>
             </Link>
 
-            <span className="text-beige-300 hidden md:inline">|</span>
+            <span className="text-white/30 hidden md:inline">|</span>
 
-            <button
-              onClick={() => {
-                sessionStorage.removeItem('mafth_intro_played_v2');
-                window.location.reload();
-              }}
-              className="flex items-center gap-1 hover:text-black font-medium transition-colors hidden sm:flex text-[11px]"
-              title="Replay 3-4s Intro Cinematic"
-            >
-              <Sparkles className="w-3 h-3 text-brand-pink" />
-              <span>Replay Intro</span>
-            </button>
-
-            {/* Role Switcher Pill for reviewer/demo */}
-            <div className="hidden lg:flex items-center gap-1 bg-beige-100 border border-beige-300 rounded px-2 py-0.5">
-              <span className="text-[10px] uppercase font-bold text-grey-600 tracking-wider">Demo Mode:</span>
-              <select
-                value={currentRole}
-                onChange={(e) => setRole(e.target.value)}
-                className="bg-transparent text-[11px] font-semibold text-black focus:outline-none cursor-pointer"
+            {isStaff ? (
+              <Link
+                to={dashboardPath}
+                className="flex items-center gap-1 bg-white/10 hover:bg-white/20 rounded-full px-2.5 py-0.5 font-semibold text-white transition-colors"
               >
-                <option value={ROLES.CUSTOMER}>Customer Store</option>
-                <option value={ROLES.VENDOR}>Vendor Panel</option>
-                <option value={ROLES.SUPER_ADMIN}>Admin Panel</option>
-                <option value={ROLES.SUB_ADMIN}>Sub-Admin (RBAC)</option>
-              </select>
-            </div>
+                <LayoutDashboard className="w-3 h-3" />
+                <span>{ROLE_LABELS[currentRole]} Dashboard</span>
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="hidden sm:flex items-center gap-1 hover:text-white font-medium transition-colors"
+              >
+                <Sparkles className="w-3 h-3 text-marigold-400" />
+                <span>Login / Staff Portal</span>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -189,15 +184,15 @@ export default function Header() {
       {/* 2. MAIN HEADER BAR */}
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 sm:gap-6 transition-all duration-300 ${isScrolled ? 'py-2 sm:py-2.5' : 'py-3 sm:py-3.5'}`}>
         
-        {/* Brand Logo strictly inside pink square tile */}
+        {/* Brand logo */}
         <div className="flex items-center gap-3">
           <Logo size="md" />
           <div className="hidden sm:block">
-            <span className="block font-serif text-xs font-semibold tracking-wider text-black uppercase">
+            <span className="block font-display text-lg font-extrabold tracking-tight text-brand-700 leading-none">
               MAFTH
             </span>
-            <span className="block text-[9px] uppercase tracking-widest text-beige-500 font-medium">
-              Indian Marketplace
+            <span className="block text-[9px] uppercase tracking-widest text-brand-600 font-medium">
+              Multi-Vendor Marketplace
             </span>
           </div>
         </div>
@@ -206,10 +201,10 @@ export default function Header() {
         <div ref={searchRef} className="flex-1 max-w-2xl relative">
           <form
             onSubmit={handleSearchSubmit}
-            className="flex items-center border border-beige-300 rounded hover:border-black focus-within:border-black transition-colors bg-beige-50/50"
+            className="flex items-center border-2 border-brand-700 rounded-full overflow-hidden transition-colors bg-white focus-within:ring-4 focus-within:ring-brand-100"
           >
             {/* Category Filter dropdown */}
-            <div className="hidden md:flex items-center pl-3 pr-2 border-r border-beige-300 text-xs text-grey-700 bg-beige-100/50 h-10 rounded-l">
+            <div className="hidden md:flex items-center pl-3 pr-2 border-r border-mist-300 text-xs text-grey-700 bg-mist-100 h-10">
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
@@ -230,7 +225,7 @@ export default function Header() {
               <Search className="w-4 h-4 text-grey-400 mr-2 flex-shrink-0" />
               <input
                 type="text"
-                placeholder="Search handloom linen, brass decor, automatic watches, ceramics..."
+                placeholder="Search products, brands and vendors..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => {
@@ -254,7 +249,7 @@ export default function Header() {
             <button
               type="submit"
               aria-label="Search catalogue"
-              className="px-4 sm:px-5 h-10 bg-black text-white hover:bg-black/90 transition-colors flex items-center justify-center rounded-r text-xs font-semibold uppercase tracking-wider"
+              className="px-4 sm:px-6 h-10 bg-marigold-400 text-black hover:bg-marigold-300 transition-colors flex items-center justify-center text-xs font-bold uppercase tracking-wider"
             >
               <Search className="w-4 h-4 sm:hidden" />
               <span className="hidden sm:inline">Search</span>
@@ -263,23 +258,23 @@ export default function Header() {
 
           {/* Autosuggest and Recent Searches Dropdown */}
           {isSearchOpen && suggestions.length > 0 && (
-            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-beige-300 rounded shadow-lift z-50 overflow-hidden">
-              <div className="p-2 border-b border-beige-200 bg-beige-50 text-[11px] font-semibold text-grey-600 uppercase tracking-wider flex justify-between">
+            <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-mist-300 rounded shadow-lift z-50 overflow-hidden">
+              <div className="p-2 border-b border-mist-200 bg-mist-50 text-[11px] font-semibold text-grey-600 uppercase tracking-wider flex justify-between">
                 <span>Matching Catalogue Items</span>
                 <span>Press Enter to view all</span>
               </div>
-              <div className="divide-y divide-beige-100 max-h-80 overflow-y-auto">
+              <div className="divide-y divide-mist-100 max-h-80 overflow-y-auto">
                 {suggestions.map((item) => (
                   <Link
                     key={item.id}
                     to={`/product/${item.id}`}
                     onClick={() => setIsSearchOpen(false)}
-                    className="flex items-center gap-3 p-2.5 hover:bg-beige-50 transition-colors group"
+                    className="flex items-center gap-3 p-2.5 hover:bg-mist-50 transition-colors group"
                   >
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-10 h-10 object-cover rounded border border-beige-300 bg-beige-100"
+                      className="w-10 h-10 object-cover rounded border border-mist-300 bg-mist-100"
                     />
                     <div className="flex-1 min-w-0">
                       <div className="text-xs font-semibold text-black group-hover:underline truncate">
@@ -306,7 +301,7 @@ export default function Header() {
           <div className="relative">
             <button
               onClick={() => setIsAccountMenuOpen(!isAccountMenuOpen)}
-              className="flex items-center gap-2 p-1.5 sm:px-2.5 sm:py-1.5 rounded hover:bg-beige-100 transition-colors text-black"
+              className="flex items-center gap-2 p-1.5 sm:px-2.5 sm:py-1.5 rounded hover:bg-mist-100 transition-colors text-black"
             >
               <User className="w-5 h-5 text-black" />
               <div className="hidden xl:block text-left text-xs leading-tight">
@@ -320,12 +315,12 @@ export default function Header() {
             {isAccountMenuOpen && (
               <div
                 onMouseLeave={() => setIsAccountMenuOpen(false)}
-                className="absolute right-0 mt-2 w-56 bg-white border border-beige-300 rounded shadow-lift p-2 z-50 text-xs"
+                className="absolute right-0 mt-2 w-56 bg-white border border-mist-300 rounded shadow-lift p-2 z-50 text-xs"
               >
-                <div className="p-2 border-b border-beige-200">
+                <div className="p-2 border-b border-mist-200">
                   <p className="font-semibold text-black">{user.name}</p>
                   <p className="text-[11px] text-grey-500 truncate">{user.email}</p>
-                  <span className="inline-block mt-1 text-[10px] bg-beige-200 text-black px-1.5 py-0.5 rounded font-medium">
+                  <span className="inline-block mt-1 text-[10px] bg-marigold-100 text-marigold-700 px-1.5 py-0.5 rounded font-semibold">
                     {user.loyaltyTier}
                   </span>
                 </div>
@@ -333,31 +328,42 @@ export default function Header() {
                   <Link
                     to="/profile"
                     onClick={() => setIsAccountMenuOpen(false)}
-                    className="block px-2.5 py-1.5 rounded hover:bg-beige-100 text-black"
+                    className="block px-2.5 py-1.5 rounded hover:bg-mist-100 text-black"
                   >
                     My Orders & Timeline
                   </Link>
                   <Link
                     to="/wishlist"
                     onClick={() => setIsAccountMenuOpen(false)}
-                    className="block px-2.5 py-1.5 rounded hover:bg-beige-100 text-black"
+                    className="block px-2.5 py-1.5 rounded hover:bg-mist-100 text-black"
                   >
                     Saved Items ({wishlistCount})
                   </Link>
                   <Link
-                    to="/vendor"
+                    to="/partner-with-us"
                     onClick={() => setIsAccountMenuOpen(false)}
-                    className="block px-2.5 py-1.5 rounded hover:bg-beige-100 text-black font-medium"
+                    className="block px-2.5 py-1.5 rounded hover:bg-mist-100 text-black font-medium"
                   >
-                    Vendor Portal
+                    Become a Vendor Partner
                   </Link>
                   <Link
-                    to="/admin"
+                    to={isStaff ? dashboardPath : '/login'}
                     onClick={() => setIsAccountMenuOpen(false)}
-                    className="block px-2.5 py-1.5 rounded hover:bg-beige-100 text-black font-medium"
+                    className="block px-2.5 py-1.5 rounded hover:bg-brand-50 text-brand-700 font-semibold"
                   >
-                    Admin & RBAC Controls
+                    {isStaff ? `${ROLE_LABELS[currentRole]} Dashboard` : 'Login / Switch Account'}
                   </Link>
+                  {isAuthenticated && (
+                    <button
+                      onClick={() => {
+                        logout();
+                        setIsAccountMenuOpen(false);
+                      }}
+                      className="block w-full text-left px-2.5 py-1.5 rounded hover:bg-mist-100 text-grey-600"
+                    >
+                      Log out
+                    </button>
+                  )}
                 </div>
               </div>
             )}
@@ -366,12 +372,12 @@ export default function Header() {
           {/* Wishlist Button */}
           <Link
             to="/wishlist"
-            className="relative p-2 rounded hover:bg-beige-100 transition-colors text-black"
+            className="relative p-2 rounded hover:bg-mist-100 transition-colors text-black"
             aria-label="Wishlist"
           >
             <Heart className="w-5 h-5" />
             {wishlistCount > 0 && (
-              <span className="absolute top-1 right-1 w-4 h-4 bg-black text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+              <span className="absolute top-1 right-1 w-4 h-4 bg-brand-700 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
                 {wishlistCount}
               </span>
             )}
@@ -380,13 +386,13 @@ export default function Header() {
           {/* Cart Bag with Drawer Trigger */}
           <button
             onClick={openDrawer}
-            className="relative flex items-center gap-2 p-2 sm:px-3 sm:py-2 bg-black text-white rounded hover:bg-black/90 transition-colors"
+            className="relative flex items-center gap-2 p-2 sm:px-3.5 sm:py-2 bg-brand-700 text-white rounded-full hover:bg-brand-800 transition-colors"
             aria-label="Shopping Cart Bag"
           >
             <ShoppingBag className="w-4 h-4" />
             <span className="text-xs font-semibold hidden md:inline">Bag</span>
             {cartCount > 0 && (
-              <span className="w-4 h-4 bg-beige-100 text-black text-[10px] font-bold rounded-full flex items-center justify-center">
+              <span className="w-4 h-4 bg-marigold-400 text-black text-[10px] font-bold rounded-full flex items-center justify-center">
                 {cartCount}
               </span>
             )}
@@ -395,7 +401,7 @@ export default function Header() {
       </div>
 
       {/* 3. CATEGORY MEGA-MENU STRIP (Desktop) */}
-      <nav ref={megaMenuRef} className="hidden md:block bg-white border-t border-beige-200 relative">
+      <nav ref={megaMenuRef} className="hidden md:block bg-white border-t border-mist-200 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ul className="flex items-center justify-between text-xs font-medium text-grey-700 py-2.5 overflow-x-auto no-scrollbar">
             {categories.map((cat) => (
@@ -406,8 +412,8 @@ export default function Header() {
               >
                 <Link
                   to={`/category/${cat.slug}`}
-                  className={`hover:text-black transition-colors px-2 py-1 flex items-center gap-1 ${
-                    activeMegaCategory?.id === cat.id ? 'text-black font-semibold' : ''
+                  className={`hover:text-brand-700 transition-colors px-2.5 py-1 flex items-center gap-1 ${
+                    activeMegaCategory?.id === cat.id ? 'text-brand-700 font-semibold bg-brand-50 rounded-full' : ''
                   }`}
                 >
                   <span>{cat.name}</span>
@@ -422,14 +428,14 @@ export default function Header() {
         {activeMegaCategory && (
           <div
             onMouseLeave={() => setActiveMegaCategory(null)}
-            className="absolute top-full left-0 right-0 bg-white border-b border-beige-300 shadow-lift py-6 z-40 transition-all"
+            className="absolute top-full left-0 right-0 bg-white border-b border-mist-300 shadow-lift py-6 z-40 transition-all"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-4 gap-8">
-              <div className="col-span-1 border-r border-beige-200 pr-6">
-                <span className="text-[10px] uppercase font-bold text-beige-500 tracking-wider">
+              <div className="col-span-1 border-r border-mist-200 pr-6">
+                <span className="text-[10px] uppercase font-bold text-brand-600 tracking-wider">
                   Featured Category
                 </span>
-                <h3 className="font-serif text-xl font-bold text-black mt-1 mb-2">
+                <h3 className="font-display text-xl font-bold text-black mt-1 mb-2">
                   {activeMegaCategory.name}
                 </h3>
                 <p className="text-xs text-grey-600 mb-4 leading-relaxed">
@@ -446,7 +452,7 @@ export default function Header() {
               </div>
 
               <div className="col-span-2">
-                <span className="text-[10px] uppercase font-bold text-beige-500 tracking-wider">
+                <span className="text-[10px] uppercase font-bold text-brand-600 tracking-wider">
                   Popular Sub-Collections
                 </span>
                 <div className="grid grid-cols-2 gap-y-2.5 gap-x-6 mt-3 text-xs">
@@ -457,7 +463,7 @@ export default function Header() {
                       onClick={() => setActiveMegaCategory(null)}
                       className="text-grey-700 hover:text-black hover:translate-x-1 transition-transform flex items-center gap-2"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-beige-300" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-mist-300" />
                       <span>{sub}</span>
                     </Link>
                   ))}
@@ -465,7 +471,7 @@ export default function Header() {
               </div>
 
               <div className="col-span-1">
-                <div className="relative rounded overflow-hidden aspect-[4/3] group border border-beige-300">
+                <div className="relative rounded overflow-hidden aspect-[4/3] group border border-mist-300">
                   <img
                     src={activeMegaCategory.image}
                     alt={activeMegaCategory.name}
@@ -486,14 +492,14 @@ export default function Header() {
       {/* Pincode Change Modal */}
       {isLocationModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-          <div className="bg-white rounded border border-beige-300 shadow-2xl max-w-sm w-full p-6 relative">
+          <div className="bg-white rounded border border-mist-300 shadow-2xl max-w-sm w-full p-6 relative">
             <button
               onClick={() => setIsLocationModalOpen(false)}
               className="absolute top-4 right-4 text-grey-400 hover:text-black"
             >
               <X className="w-4 h-4" />
             </button>
-            <h3 className="font-serif text-lg font-bold text-black mb-1">Choose Delivery Location</h3>
+            <h3 className="font-display text-lg font-bold text-black mb-1">Choose Delivery Location</h3>
             <p className="text-xs text-grey-600 mb-4">
               Enter your Indian 6-digit postal code to see real-time vendor shipping speeds and slots.
             </p>
@@ -504,19 +510,19 @@ export default function Header() {
                 value={tempPincode}
                 onChange={(e) => setTempPincode(e.target.value)}
                 placeholder="e.g. 560038"
-                className="w-full text-sm font-semibold tracking-widest text-center py-2.5 border border-beige-300 rounded focus:border-black focus:outline-none"
+                className="w-full text-sm font-semibold tracking-widest text-center py-2.5 border border-mist-300 rounded focus:border-brand-600 focus:outline-none"
               />
               <div className="flex gap-2">
                 <button
                   type="button"
                   onClick={() => setIsLocationModalOpen(false)}
-                  className="flex-1 py-2 text-xs border border-beige-300 rounded hover:bg-beige-100"
+                  className="flex-1 py-2 text-xs border border-mist-300 rounded hover:bg-mist-100"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2 text-xs bg-black text-white font-semibold rounded hover:bg-black/90"
+                  className="flex-1 py-2 text-xs bg-brand-700 text-white font-semibold rounded hover:bg-brand-800"
                 >
                   Update Pincode
                 </button>

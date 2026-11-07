@@ -32,7 +32,7 @@ export default function VendorStorePage() {
   if (loading) {
     return (
       <div className="py-20 text-center">
-        <div className="w-8 h-8 border-2 border-black border-t-transparent rounded-full animate-spin mx-auto mb-2" />
+        <div className="w-8 h-8 border-2 border-brand-600 border-t-transparent rounded-full animate-spin mx-auto mb-2" />
         <p className="text-xs uppercase font-bold text-grey-500">Loading Vendor Atelier...</p>
       </div>
     );
@@ -41,7 +41,7 @@ export default function VendorStorePage() {
   if (!vendor) {
     return (
       <div className="py-20 text-center">
-        <h2 className="font-serif text-2xl font-bold">Vendor Not Found</h2>
+        <h2 className="font-display text-2xl font-bold">Vendor Not Found</h2>
         <Link to="/" className="text-xs underline font-semibold mt-2 inline-block">Return Home</Link>
       </div>
     );
@@ -50,7 +50,7 @@ export default function VendorStorePage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Vendor Hero Banner */}
-      <div className="relative h-64 sm:h-80 w-full bg-black overflow-hidden border-b border-beige-300">
+      <div className="relative h-64 sm:h-80 w-full bg-brand-700 overflow-hidden border-b border-mist-300">
         <img
           src={vendor.banner}
           alt={vendor.name}
@@ -68,10 +68,10 @@ export default function VendorStorePage() {
               />
               <div>
                 <div className="flex items-center gap-2">
-                  <h1 className="font-serif text-2xl sm:text-3xl font-bold">{vendor.name}</h1>
+                  <h1 className="font-display text-2xl sm:text-3xl font-bold">{vendor.name}</h1>
                   <ShieldCheck className="w-5 h-5 text-status-success fill-status-success/20" />
                 </div>
-                <div className="flex items-center gap-3 text-xs text-beige-300 mt-1">
+                <div className="flex items-center gap-3 text-xs text-mist-300 mt-1">
                   <span className="flex items-center gap-1">
                     <MapPin className="w-3.5 h-3.5" /> {vendor.location}
                   </span>
@@ -85,7 +85,7 @@ export default function VendorStorePage() {
 
             <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md px-4 py-2 rounded border border-white/20 text-xs">
               <div className="flex items-center gap-1 text-white font-bold">
-                <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                <Star className="w-4 h-4 fill-marigold-500 text-marigold-500" />
                 <span>{vendor.rating}</span>
                 <span className="text-grey-300 font-normal">({vendor.reviewsCount})</span>
               </div>
@@ -101,8 +101,8 @@ export default function VendorStorePage() {
 
       {/* Vendor Bio and Catalogue */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="p-6 bg-beige-50 border border-beige-300 rounded mb-10 max-w-3xl">
-          <span className="text-[10px] uppercase font-bold text-beige-500 tracking-wider block mb-1">
+        <div className="p-6 bg-mist-50 border border-mist-300 rounded mb-10 max-w-3xl">
+          <span className="text-[10px] uppercase font-bold text-brand-600 tracking-wider block mb-1">
             Guild Statement & Craft Heritage
           </span>
           <p className="text-xs sm:text-sm text-grey-700 leading-relaxed font-light">
@@ -110,8 +110,8 @@ export default function VendorStorePage() {
           </p>
         </div>
 
-        <div className="mb-6 flex items-center justify-between pb-3 border-b border-beige-300">
-          <h2 className="font-serif text-2xl font-bold text-black">
+        <div className="mb-6 flex items-center justify-between pb-3 border-b border-mist-300">
+          <h2 className="font-display text-2xl font-bold text-black">
             Artisanal Batches by {vendor.name} ({products.length})
           </h2>
         </div>

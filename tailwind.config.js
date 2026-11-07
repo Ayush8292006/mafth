@@ -1,65 +1,85 @@
 /** @type {import('tailwindcss').Config} */
+// MAFTH design tokens — "Emerald & Marigold"
+// brand  = deep emerald (primary: header, buttons, links)
+// marigold = warm saffron-yellow accent (deals, badges, highlights)
+// mist   = cool green-tinted neutrals (surfaces, borders)
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
         white: '#FFFFFF',
-        beige: {
-          50: '#FAF7F2',
-          100: '#F3EDE3',
-          200: '#ECE3D5',
-          300: '#E3D8C6',
-          400: '#D0C1AB',
-          500: '#B9A68A',
+        black: '#0D1B16',
+        brand: {
+          50: '#EBF6F1',
+          100: '#D2ECE0',
+          200: '#A6D8C2',
+          300: '#6DBE9C',
+          400: '#2F9D74',
+          500: '#11825C',
+          600: '#0B6B4C',
+          700: '#0A5A41',
+          800: '#084A36',
+          900: '#05342A',
+          950: '#03231C',
         },
-        black: '#0B0B0B',
+        marigold: {
+          50: '#FFF9E8',
+          100: '#FFF0C2',
+          200: '#FFE08A',
+          300: '#FFD154',
+          400: '#FFC21F',
+          500: '#F0A800',
+          600: '#C98A00',
+          700: '#9A6900',
+        },
+        mist: {
+          50: '#F6F9F7',
+          100: '#EEF3F0',
+          200: '#E3EBE7',
+          300: '#D2DDD8',
+          400: '#A8B8B1',
+          500: '#6F8279',
+        },
         grey: {
-          50: '#F9F9F8',
-          100: '#F2F1EE',
-          200: '#E5E4E0',
-          300: '#D1CFC9',
-          400: '#A3A099',
-          500: '#7B7770',
-          600: '#5E5A54',
-          700: '#43403B',
-          800: '#2B2925',
-          900: '#181715',
+          50: '#F8FAF9',
+          100: '#F1F4F2',
+          200: '#E4E8E6',
+          300: '#CFD5D2',
+          400: '#9AA39F',
+          500: '#6E7773',
+          600: '#525A56',
+          700: '#3A413E',
+          800: '#252B28',
+          900: '#141917',
         },
         status: {
-          success: '#1B873F',
-          error: '#D32F2F',
-          rating: '#F59E0B',
-          info: '#3B82F6',
+          success: '#15803D',
+          error: '#DC2626',
+          rating: '#F0A800',
+          info: '#2563EB',
+          warning: '#D97706',
         },
-        brand: {
-          pink: '#FF007A',
-          yellow: '#FFDF00',
-        }
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['"Bricolage Grotesque"', '"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       borderRadius: {
-        'sm': '3px',
-        DEFAULT: '4px',
-        'md': '6px',
-        'lg': '8px',
+        sm: '6px',
+        DEFAULT: '8px',
+        md: '10px',
+        lg: '14px',
+        xl: '18px',
+        '2xl': '24px',
       },
       boxShadow: {
-        'subtle': '0 1px 3px rgba(11, 11, 11, 0.04), 0 1px 2px rgba(11, 11, 11, 0.02)',
-        'card': '0 4px 16px -2px rgba(11, 11, 11, 0.05), 0 2px 6px -1px rgba(11, 11, 11, 0.03)',
-        'lift': '0 10px 25px -5px rgba(11, 11, 11, 0.08), 0 8px 10px -6px rgba(11, 11, 11, 0.04)',
+        subtle: '0 1px 3px rgba(13, 27, 22, 0.05), 0 1px 2px rgba(13, 27, 22, 0.03)',
+        card: '0 6px 20px -6px rgba(10, 90, 65, 0.12), 0 2px 6px -1px rgba(13, 27, 22, 0.04)',
+        lift: '0 18px 40px -12px rgba(10, 90, 65, 0.22), 0 8px 12px -6px rgba(13, 27, 22, 0.06)',
       },
-      screens: {
-        'xs': '380px',
-      }
+      screens: { xs: '380px' },
     },
   },
   plugins: [],
-}
-
+};

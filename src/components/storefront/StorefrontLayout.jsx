@@ -42,7 +42,7 @@ export default function StorefrontLayout() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-black selection:bg-beige-300 selection:text-black pb-14 md:pb-0">
+    <div className="min-h-screen flex flex-col bg-white text-black selection:bg-mist-300 selection:text-black pb-14 md:pb-0">
       <InitialIntroLoader />
       <Header />
       <main className="flex-1">

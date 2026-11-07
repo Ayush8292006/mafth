@@ -35,7 +35,7 @@ export default function BankOffersStrip() {
   ];
 
   return (
-    <section className="bg-white border-b border-beige-300 py-8">
+    <section className="bg-white border-b border-mist-300 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section title */}
@@ -56,18 +56,18 @@ export default function BankOffersStrip() {
           {offers.map((offer, idx) => (
             <div
               key={idx}
-              className="p-4 rounded border border-beige-300 bg-beige-50 flex flex-col justify-between hover:border-black transition-colors"
+              className="p-4 rounded border border-mist-300 bg-mist-50 flex flex-col justify-between hover:border-brand-600 transition-colors"
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-black bg-beige-200 px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand-800 bg-brand-100 px-2 py-0.5 rounded-full">
                     {offer.bank}
                   </span>
                   <span className="text-[10px] text-status-success font-semibold flex items-center gap-1">
                     <ShieldCheck className="w-3 h-3" /> {offer.badge}
                   </span>
                 </div>
-                <h4 className="font-serif text-base font-bold text-black mb-1">
+                <h4 className="font-display text-base font-bold text-black mb-1">
                   {offer.title}
                 </h4>
                 <p className="text-xs text-grey-600 leading-relaxed mb-3">
@@ -76,9 +76,9 @@ export default function BankOffersStrip() {
               </div>
 
               {/* Coupon Copy Pill */}
-              <div className="pt-2 border-t border-beige-200 flex items-center justify-between">
-                <div className="flex items-center gap-1.5 font-mono text-xs font-bold text-black bg-white px-2.5 py-1 border border-beige-300 rounded">
-                  <Tag className="w-3 h-3 text-beige-500" />
+              <div className="pt-2 border-t border-mist-200 flex items-center justify-between">
+                <div className="flex items-center gap-1.5 font-mono text-xs font-bold text-black bg-white px-2.5 py-1 border border-mist-300 rounded">
+                  <Tag className="w-3 h-3 text-brand-600" />
                   <span>{offer.code}</span>
                 </div>
 
