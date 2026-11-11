@@ -81,9 +81,13 @@ export default function ApplicationsPage() {
                 {[
                   ['Department', open.department],
                   ['Catalogue size', `${open.skus} SKUs`],
+<<<<<<< HEAD
                   ['GSTIN', open.gst || 'Not registered (optional)'],
                   ['PAN', open.pan ? `${open.pan} ${open.panVerified ? '✓ DigiLocker' : ''}` : '—'],
                   ['Mobile', open.phoneVerified ? 'OTP verified ✓' : 'Not verified'],
+=======
+                  ['GSTIN', open.gst],
+>>>>>>> bc75d2a7e123e8022cd2ed0de1aa6593c9eb5191
                   ['Applied on', shortDate(open.date)],
                 ].map(([k, v]) => (
                   <div key={k} className="bg-mist-50 rounded-md p-3">
@@ -95,8 +99,13 @@ export default function ApplicationsPage() {
               <div>
                 <div className="text-xs font-bold uppercase tracking-wider text-grey-500 mb-2">KYC checklist</div>
                 <ul className="space-y-1.5">
+<<<<<<< HEAD
                   {['Mobile OTP verified', 'PAN verified (DigiLocker)', 'Bank account proof', 'GSTIN (optional)'].map((d, i) => {
                     const done = (i === 0 && open.phoneVerified) || (i === 1 && open.panVerified) || (i === 3 && open.gst) || APPLICATION_STAGES.indexOf(open.stage) >= 2 || (open.stage === 'Documents Review' && i < 2);
+=======
+                  {['GST certificate', 'PAN card', 'Cancelled cheque / bank proof', 'Brand / trademark proof'].map((d, i) => {
+                    const done = APPLICATION_STAGES.indexOf(open.stage) >= 2 || (open.stage === 'Documents Review' && i < 2);
+>>>>>>> bc75d2a7e123e8022cd2ed0de1aa6593c9eb5191
                     return (
                       <li key={d} className="flex items-center gap-2">
                         <FileCheck2 className={cn('w-4 h-4', done ? 'text-brand-600' : 'text-grey-300')} />

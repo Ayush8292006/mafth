@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
 import { Store, TrendingUp, Wallet, Truck, CheckCircle2, ArrowRight, Users } from 'lucide-react';
 import VendorApplicationForm from '../../components/storefront/VendorApplicationForm';
+=======
+import { Store, TrendingUp, Wallet, Truck, BadgeCheck, FileText, CheckCircle2, ArrowRight, Users } from 'lucide-react';
+>>>>>>> bc75d2a7e123e8022cd2ed0de1aa6593c9eb5191
 import { usePlatformStore } from '../../store/usePlatformStore';
 
 const BENEFITS = [
@@ -13,15 +17,35 @@ const BENEFITS = [
 
 const STEPS = [
   ['Apply', 'Fill the short form below — it takes 3 minutes.'],
+<<<<<<< HEAD
   ['Verify instantly', 'Verify your mobile with OTP and PAN with DigiLocker — no paperwork.'],
+=======
+  ['Document check', 'MAFTH Admin reviews your GST, PAN and bank details.'],
+>>>>>>> bc75d2a7e123e8022cd2ed0de1aa6593c9eb5191
   ['KYC verified', 'Your shop and Seller Panel login are created.'],
   ['Go live', 'List products, get approved and start selling.'],
 ];
 
+<<<<<<< HEAD
 
 export default function PartnerWithUsPage() {
   const { settings } = usePlatformStore();
   const [done, setDone] = useState(null);
+=======
+const DOCS = ['GST certificate (GSTIN)', 'PAN card of business / owner', 'Cancelled cheque or bank statement', 'Brand or trademark proof (if any)'];
+
+export default function PartnerWithUsPage() {
+  const { departments, submitApplication, settings } = usePlatformStore();
+  const [done, setDone] = useState(null);
+  const [form, setForm] = useState({ business: '', owner: '', phone: '', email: '', city: '', department: departments[0]?.name || '', gst: '', skus: '' });
+  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+
+  const submit = (e) => {
+    e.preventDefault();
+    submitApplication(form);
+    setDone(form.business);
+  };
+>>>>>>> bc75d2a7e123e8022cd2ed0de1aa6593c9eb5191
 
   return (
     <div className="bg-white">
@@ -45,15 +69,24 @@ export default function PartnerWithUsPage() {
               <a href="#apply" className="btn-accent !rounded-full !px-6 !py-3">
                 Apply now <ArrowRight className="w-4 h-4" />
               </a>
+<<<<<<< HEAD
               <a href="#process" className="inline-flex items-center px-6 py-3 rounded-full border border-white/30 text-sm font-semibold hover:bg-white/10">
                 How it works
+=======
+              <a href="#commission" className="inline-flex items-center px-6 py-3 rounded-full border border-white/30 text-sm font-semibold hover:bg-white/10">
+                See commission rates
+>>>>>>> bc75d2a7e123e8022cd2ed0de1aa6593c9eb5191
               </a>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
             {[
               ['0', 'Joining fee'],
+<<<<<<< HEAD
               ['10', 'Departments to sell in'],
+=======
+              [`${settings.defaultCommission}%`, 'Avg. commission'],
+>>>>>>> bc75d2a7e123e8022cd2ed0de1aa6593c9eb5191
               [settings.payoutCycle, 'Payout cycle'],
               ['48 hrs', 'Application review'],
             ].map(([n, l]) => (
@@ -98,6 +131,40 @@ export default function PartnerWithUsPage() {
         </div>
       </section>
 
+<<<<<<< HEAD
+=======
+      {/* Commission + KYC */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid lg:grid-cols-3 gap-8">
+        <div id="commission" className="lg:col-span-2">
+          <h2 className="font-display text-3xl font-bold text-black">Commission by department</h2>
+          <p className="text-sm text-grey-500 mt-1">No listing fee. You only pay when you sell.</p>
+          <div className="grid sm:grid-cols-2 gap-2 mt-6">
+            {departments.filter((d) => d.enabled).map((d) => (
+              <div key={d.id} className="flex items-center justify-between rounded-lg border border-mist-300 px-4 py-3">
+                <div className="flex items-center gap-3">
+                  <img src={d.image} alt="" className="w-9 h-9 rounded-md object-cover" />
+                  <span className="text-sm font-semibold">{d.name}</span>
+                </div>
+                <span className="font-display text-lg font-bold text-brand-700">{d.commission}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div id="kyc" className="rounded-xl bg-brand-50 border border-brand-100 p-6 h-fit">
+          <div className="flex items-center gap-2 text-brand-800 font-bold">
+            <FileText className="w-5 h-5" /> Keep these ready
+          </div>
+          <ul className="mt-4 space-y-3">
+            {DOCS.map((d) => (
+              <li key={d} className="flex items-start gap-2 text-sm text-black">
+                <BadgeCheck className="w-4 h-4 text-brand-600 mt-0.5 flex-shrink-0" /> {d}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+>>>>>>> bc75d2a7e123e8022cd2ed0de1aa6593c9eb5191
       {/* Application form */}
       <section id="apply" className="bg-brand-900">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
@@ -115,7 +182,40 @@ export default function PartnerWithUsPage() {
               <>
                 <h2 className="font-display text-3xl font-bold text-black">Become a vendor partner</h2>
                 <p className="text-sm text-grey-500 mt-1 mb-6">Takes about 3 minutes. No payment required.</p>
+<<<<<<< HEAD
                 <VendorApplicationForm onDone={setDone} />
+=======
+                <form onSubmit={submit} className="grid sm:grid-cols-2 gap-4">
+                  {[
+                    ['business', 'Business / brand name', 'text'],
+                    ['owner', 'Owner name', 'text'],
+                    ['phone', 'Mobile number', 'tel'],
+                    ['email', 'Email', 'email'],
+                    ['city', 'City', 'text'],
+                    ['gst', 'GSTIN', 'text'],
+                  ].map(([k, label, type]) => (
+                    <label key={k} className="block">
+                      <span className="text-xs font-semibold text-grey-700">{label}</span>
+                      <input className="input mt-1" type={type} required value={form[k]} onChange={set(k)} />
+                    </label>
+                  ))}
+                  <label className="block">
+                    <span className="text-xs font-semibold text-grey-700">Main department</span>
+                    <select className="input mt-1" value={form.department} onChange={set('department')}>
+                      {departments.map((d) => (
+                        <option key={d.id}>{d.name}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="block">
+                    <span className="text-xs font-semibold text-grey-700">Approx. number of products</span>
+                    <input className="input mt-1" type="number" min={1} required value={form.skus} onChange={set('skus')} />
+                  </label>
+                  <button className="btn-accent sm:col-span-2 !py-3 mt-2">
+                    Submit application <ArrowRight className="w-4 h-4" />
+                  </button>
+                </form>
+>>>>>>> bc75d2a7e123e8022cd2ed0de1aa6593c9eb5191
               </>
             )}
           </div>

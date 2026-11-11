@@ -67,6 +67,7 @@ src/
 ```
 
 ## Backend hand-off
+<<<<<<< HEAD
 
 Replace `login()` in `useAuthStore` with the real auth API (return the user's role), and swap the actions in
 `usePlatformStore` for API calls. The `can(role, module, action)` matrix maps 1:1 to a backend RBAC table.
@@ -80,3 +81,8 @@ Replace `login()` in `useAuthStore` with the real auth API (return the user's ro
 - Top 20 Buyers leaderboard: home section + `/leaderboard`; Admin → Top Buyers Leaderboard can show/hide it, hide buyers, toggle Instagram handles; customers add their Instagram handle on Profile / Leaderboard page
 - Sell on MAFTH: commission & documents section removed; form has mobile OTP verification, PAN via DigiLocker, GSTIN optional
   - OTP & DigiLocker are **demo** — see `src/components/storefront/VendorApplicationForm.jsx` (top of file) for where real APIs plug in
+=======
+
+Replace `login()` in `useAuthStore` with the real auth API (return the user's role), and swap the actions in
+`usePlatformStore` for API calls. The `can(role, module, action)` matrix maps 1:1 to a backend RBAC table.
+>>>>>>> bc75d2a7e123e8022cd2ed0de1aa6593c9eb5191
