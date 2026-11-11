@@ -21,7 +21,7 @@ export const useCartStore = create(
         set((state) => {
           const size = selectedVariant.size || product.variants?.sizes?.[0] || 'Standard';
           const color = selectedVariant.color?.name || product.variants?.colors?.[0]?.name || 'Default';
-          const itemKey = `${product.id}-${size}-${color}`;
+          const itemKey = `${product.id}-${product.vendorId}-${size}-${color}`;
 
           const existingIndex = state.items.findIndex((item) => item.itemKey === itemKey);
 
@@ -41,6 +41,7 @@ export const useCartStore = create(
             image: product.primaryImage || product.images?.[0],
             vendorName: product.vendorName,
             vendorId: product.vendorId,
+            vendorSlug: product.vendorSlug,
             selectedSize: size,
             selectedColor: color,
             quantity: 1,

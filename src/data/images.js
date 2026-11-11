@@ -79,40 +79,112 @@ export const studioImages = {
   ],
   heroBanners: [
     {
-      title: "THE MONSOON LINEN DIARIES",
-      subtitle: "Unstructured Handspun Classics",
-      tag: "CURATED DROP 04",
+      title: "MEGA OPENING SALE",
+      subtitle: "Up to 60% off across all 10 departments",
+      tag: "LIVE NOW",
       image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=85",
-      cta: "Explore Menswear",
-      link: "/category/mens-fashion",
-      badge: "Pure French Flax & Khadi"
+      cta: "Shop the Sale",
+      link: "/deals",
+      badge: "Ends Sunday midnight"
     },
     {
-      title: "ROYAL KATAN & CHANDERI SILKS",
-      subtitle: "Master Looms of Varanasi & Chanderi",
-      tag: "FESTIVE EDIT",
+      title: "ROYAL SILKS & FESTIVE DRAPES",
+      subtitle: "Chanderi, Banarasi & Kanjeevaram from master weavers",
+      tag: "WOMEN'S FASHION",
       image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1600&q=85",
-      cta: "Discover Sarees",
+      cta: "Shop Women's",
       link: "/category/womens-fashion",
       badge: "Silk Mark Certified"
     },
     {
-      title: "THE HOROLOGICAL ATELIER",
-      subtitle: "Mechanical & Automatic Micro-brands",
-      tag: "INDEPENDENT MAKERS",
-      image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1600&q=85",
-      cta: "Shop Timepieces",
-      link: "/category/watches-accessories",
-      badge: "Limited to 500 Pieces"
+      title: "TAILORED FOR EVERY DAY",
+      subtitle: "Linen shirts, kurtas & Nehru jackets",
+      tag: "MEN'S FASHION",
+      image: "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=1600&q=85",
+      cta: "Shop Men's",
+      link: "/category/mens-fashion",
+      badge: "Starting ₹999"
     },
     {
-      title: "HEIRLOOM STONEWARE & TEAK",
-      subtitle: "Studio Ceramics & Tactile Living",
-      tag: "HOME LIVING",
+      title: "STEP INTO COMFORT",
+      subtitle: "Handcrafted loafers, sneakers & Kolhapuris",
+      tag: "FOOTWEAR",
+      image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1600&q=85",
+      cta: "Shop Footwear",
+      link: "/category/footwear",
+      badge: "Flat 30% off"
+    },
+    {
+      title: "TIME, MADE IN INDIA",
+      subtitle: "Automatic watches from independent makers",
+      tag: "NEW LAUNCH",
+      image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1600&q=85",
+      cta: "Shop Watches",
+      link: "/category/watches-accessories",
+      badge: "Limited editions"
+    },
+    {
+      title: "CARRY IT IN STYLE",
+      subtitle: "Leather totes, weekenders & travel gear",
+      tag: "BAGS & LUGGAGE",
+      image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1600&q=85",
+      cta: "Shop Bags",
+      link: "/category/bags",
+      badge: "Up to 45% off"
+    },
+    {
+      title: "SOUND THAT MOVES YOU",
+      subtitle: "Headphones, speakers & smart gadgets",
+      tag: "ELECTRONICS",
+      image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=85",
+      cta: "Shop Electronics",
+      link: "/category/electronics",
+      badge: "No-cost EMI"
+    },
+    {
+      title: "MAKE HOME BEAUTIFUL",
+      subtitle: "Ceramics, teak décor & kitchen essentials",
+      tag: "HOME & KITCHEN",
       image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85",
-      cta: "View Tableware",
+      cta: "Shop Home",
       link: "/category/home-kitchen",
-      badge: "Wheel-thrown in Pondicherry"
+      badge: "Buy 2, get 10% off"
+    },
+    {
+      title: "GLOW, THE NATURAL WAY",
+      subtitle: "Ayurvedic skincare & self-care rituals",
+      tag: "BEAUTY",
+      image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1600&q=85",
+      cta: "Shop Beauty",
+      link: "/category/beauty-care",
+      badge: "Free gift over ₹1,499"
+    },
+    {
+      title: "PLAY, LEARN, GROW",
+      subtitle: "Wooden toys & kids' essentials",
+      tag: "KIDS & TOYS",
+      image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1600&q=85",
+      cta: "Shop Kids",
+      link: "/category/kids-toys",
+      badge: "Safe & non-toxic"
+    },
+    {
+      title: "TRAIN HARDER",
+      subtitle: "Activewear & fitness gear",
+      tag: "SPORTS & FITNESS",
+      image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1600&q=85",
+      cta: "Shop Sports",
+      link: "/category/sports-fitness",
+      badge: "Up to 50% off"
+    },
+    {
+      title: "TOP BRANDS, ONE CART",
+      subtitle: "Shop from verified independent shops",
+      tag: "BRAND SPOTLIGHT",
+      image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1600&q=85",
+      cta: "Explore Shops",
+      link: "/shops",
+      badge: "14+ verified sellers"
     }
   ]
 };

@@ -5,10 +5,14 @@ import Footer from './Footer';
 import CartDrawer from './CartDrawer';
 import MobileTabBar from './MobileTabBar';
 import InitialIntroLoader from '../ui/InitialIntroLoader';
+import OffersPopup from './OffersPopup';
+import { useUiStore } from '../../store/useUiStore';
+import { Gift } from 'lucide-react';
 import Lenis from 'lenis';
 
 export default function StorefrontLayout() {
   const { pathname } = useLocation();
+  const openOffers = useUiStore((s) => s.openOffers);
 
   // Scroll to top on route change
   useEffect(() => {
@@ -42,7 +46,7 @@ export default function StorefrontLayout() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-black selection:bg-beige-300 selection:text-black pb-14 md:pb-0">
+    <div className="min-h-screen flex flex-col bg-white text-black selection:bg-mist-300 selection:text-black pb-14 md:pb-0">
       <InitialIntroLoader />
       <Header />
       <main className="flex-1">
@@ -51,6 +55,14 @@ export default function StorefrontLayout() {
       <Footer />
       <CartDrawer />
       <MobileTabBar />
+      <OffersPopup />
+      <button
+        onClick={openOffers}
+        aria-label="Open offers"
+        className="fixed right-4 bottom-20 md:bottom-6 z-30 flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-marigold-400 text-black text-xs font-extrabold shadow-lift hover:bg-marigold-300 transition-colors"
+      >
+        <Gift className="w-4 h-4" /> Offers
+      </button>
     </div>
   );
 }

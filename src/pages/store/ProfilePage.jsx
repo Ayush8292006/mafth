@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { InstagramHandleForm } from './LeaderboardPage';
+import { usePlatformStore } from '../../store/usePlatformStore';
+import { useUiStore } from '../../store/useUiStore';
 import { useAuthStore } from '../../store/useAuthStore';
-import { Package, MapPin, Wallet, Bell, ShieldCheck, ChevronRight, Truck } from 'lucide-react';
+import { Package, MapPin, ShieldCheck, ChevronRight, Truck, Store, HelpCircle, Trophy, Gift, Instagram } from 'lucide-react';
 import { formatPrice } from '../../lib/utils';
 
 export default function ProfilePage() {
   const { user, addresses } = useAuthStore();
   const [activeTab, setActiveTab] = useState('orders');
+  const leaderboardOn = usePlatformStore((s) => s.settings.leaderboardVisible);
+  const openOffers = useUiStore((s) => s.openOffers);
+
+  const quickLinks = [
+    { to: '/partner-with-us', icon: Store, title: 'Sell on MAFTH', text: 'Open your own shop and reach buyers across India', tone: 'bg-brand-700 text-white' },
+    { to: '/help', icon: HelpCircle, title: 'Help Centre', text: 'Orders, returns, refunds & 24x7 support', tone: 'bg-brand-50 text-brand-700' },
+    leaderboardOn && { to: '/leaderboard', icon: Trophy, title: 'Top Buyers', text: 'See the Top 20 leaderboard and your rank', tone: 'bg-marigold-100 text-marigold-700' },
+    { onClick: openOffers, icon: Gift, title: 'Offers & Launches', text: 'New launches, brand deals & coupons', tone: 'bg-marigold-400 text-black' },
+  ].filter(Boolean);
 
   const mockOrders = [
     {
@@ -37,43 +50,78 @@ export default function ProfilePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Profile Header */}
-        <div className="p-6 bg-beige-50 border border-beige-300 rounded mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="p-6 bg-mist-50 border border-mist-300 rounded mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <img
               src={user.avatar}
               alt={user.name}
-              className="w-16 h-16 rounded-full border-2 border-black object-cover"
+              className="w-16 h-16 rounded-full border-2 border-brand-600 object-cover"
             />
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="font-serif text-xl font-bold text-black">{user.name}</h1>
-                <span className="text-[10px] uppercase font-bold bg-black text-white px-2 py-0.5 rounded">
+                <h1 className="font-display text-xl font-bold text-black">{user.name}</h1>
+                <span className="text-[10px] uppercase font-bold bg-brand-700 text-white px-2 py-0.5 rounded">
                   {user.loyaltyTier}
                 </span>
               </div>
               <p className="text-xs text-grey-600 mt-0.5">{user.email} • {user.phone}</p>
-              <p className="text-[11px] text-beige-500 mt-1">Patron Member since {user.joinedDate}</p>
+              <p className="text-[11px] text-brand-600 mt-1">Patron Member since {user.joinedDate}</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 border-t sm:border-t-0 sm:border-l border-beige-300 pt-3 sm:pt-0 sm:pl-6 text-xs">
+          <div className="flex items-center gap-6 border-t sm:border-t-0 sm:border-l border-mist-300 pt-3 sm:pt-0 sm:pl-6 text-xs">
             <div>
               <span className="text-[10px] text-grey-500 uppercase block">MAFTH Wallet</span>
-              <span className="font-serif text-lg font-bold text-black">{formatPrice(user.walletBalance)}</span>
+              <span className="font-display text-lg font-bold text-black">{formatPrice(user.walletBalance)}</span>
             </div>
             <div>
               <span className="text-[10px] text-grey-500 uppercase block">Active Orders</span>
-              <span className="font-serif text-lg font-bold text-black">1 In Transit</span>
+              <span className="font-display text-lg font-bold text-black">1 In Transit</span>
             </div>
           </div>
         </div>
 
+        {/* Quick access: Sell on MAFTH, Help, Leaderboard, Offers */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+          {quickLinks.map((q) => {
+            const inner = (
+              <>
+                <span className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${q.tone}`}>
+                  <q.icon className="w-5 h-5" />
+                </span>
+                <span className="min-w-0 text-left">
+                  <span className="block text-sm font-bold text-black group-hover:text-brand-700">{q.title}</span>
+                  <span className="block text-[11px] text-grey-500 leading-snug">{q.text}</span>
+                </span>
+                <ChevronRight className="w-4 h-4 text-grey-300 ml-auto flex-shrink-0 hidden sm:block" />
+              </>
+            );
+            const cls = 'group flex items-center gap-3 p-3.5 rounded-xl border border-mist-300 bg-white hover:border-brand-600 hover:shadow-card transition-all';
+            return q.to ? (
+              <Link key={q.title} to={q.to} className={cls}>{inner}</Link>
+            ) : (
+              <button key={q.title} onClick={q.onClick} className={cls}>{inner}</button>
+            );
+          })}
+        </div>
+
+        <div className="mb-8 p-4 rounded-xl border border-mist-300 bg-white flex flex-col md:flex-row md:items-center gap-3">
+          <div className="flex items-center gap-3 md:w-1/2">
+            <span className="w-10 h-10 rounded-lg bg-brand-50 text-brand-700 flex items-center justify-center"><Instagram className="w-5 h-5" /></span>
+            <div>
+              <div className="text-sm font-bold text-black">Your Instagram handle <span className="text-grey-400 font-normal">(optional)</span></div>
+              <div className="text-[11px] text-grey-500">Shown next to your name if you make it to the Top 20 buyers leaderboard.</div>
+            </div>
+          </div>
+          <div className="md:flex-1"><InstagramHandleForm compact /></div>
+        </div>
+
         {/* Tab Navigation */}
-        <div className="flex border-b border-beige-300 text-xs font-semibold uppercase tracking-wider mb-8">
+        <div className="flex border-b border-mist-300 text-xs font-semibold uppercase tracking-wider mb-8">
           <button
             onClick={() => setActiveTab('orders')}
             className={`py-3 px-4 border-b-2 transition-colors flex items-center gap-2 ${
-              activeTab === 'orders' ? 'border-black text-black' : 'border-transparent text-grey-500 hover:text-black'
+              activeTab === 'orders' ? 'border-brand-600 text-black' : 'border-transparent text-grey-500 hover:text-black'
             }`}
           >
             <Package className="w-4 h-4" />
@@ -82,7 +130,7 @@ export default function ProfilePage() {
           <button
             onClick={() => setActiveTab('addresses')}
             className={`py-3 px-4 border-b-2 transition-colors flex items-center gap-2 ${
-              activeTab === 'addresses' ? 'border-black text-black' : 'border-transparent text-grey-500 hover:text-black'
+              activeTab === 'addresses' ? 'border-brand-600 text-black' : 'border-transparent text-grey-500 hover:text-black'
             }`}
           >
             <MapPin className="w-4 h-4" />
@@ -94,8 +142,8 @@ export default function ProfilePage() {
         {activeTab === 'orders' && (
           <div className="space-y-6">
             {mockOrders.map((ord) => (
-              <div key={ord.id} className="border border-beige-300 rounded overflow-hidden bg-white">
-                <div className="bg-beige-50 p-4 border-b border-beige-300 flex flex-col sm:flex-row sm:items-center justify-between text-xs gap-2">
+              <div key={ord.id} className="border border-mist-300 rounded overflow-hidden bg-white">
+                <div className="bg-mist-50 p-4 border-b border-mist-300 flex flex-col sm:flex-row sm:items-center justify-between text-xs gap-2">
                   <div className="flex items-center gap-4">
                     <div>
                       <span className="text-[10px] text-grey-500 uppercase block">Order ID</span>
@@ -133,7 +181,7 @@ export default function ProfilePage() {
                         <div key={step} className="flex flex-col items-center">
                           <div
                             className={`w-full h-1.5 rounded-full mb-2 ${
-                              isComplete ? 'bg-black' : 'bg-beige-200'
+                              isComplete ? 'bg-brand-700' : 'bg-mist-200'
                             }`}
                           />
                           <span className={isComplete ? 'font-bold text-black' : 'text-grey-400'}>
@@ -157,10 +205,10 @@ export default function ProfilePage() {
         {activeTab === 'addresses' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {addresses.map((addr) => (
-              <div key={addr.id} className="p-5 border border-beige-300 rounded bg-beige-50/50 flex flex-col justify-between">
+              <div key={addr.id} className="p-5 border border-mist-300 rounded bg-mist-50/50 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider bg-beige-200 text-black px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-bold uppercase tracking-wider bg-mist-200 text-black px-2 py-0.5 rounded">
                       {addr.type}
                     </span>
                     {addr.isDefault && (
@@ -169,7 +217,7 @@ export default function ProfilePage() {
                       </span>
                     )}
                   </div>
-                  <h3 className="font-serif text-base font-bold text-black">{addr.name}</h3>
+                  <h3 className="font-display text-base font-bold text-black">{addr.name}</h3>
                   <p className="text-xs text-grey-600 mt-1 leading-relaxed">
                     {addr.addressLine}, {addr.city}, {addr.state} — <strong>{addr.pincode}</strong>
                   </p>

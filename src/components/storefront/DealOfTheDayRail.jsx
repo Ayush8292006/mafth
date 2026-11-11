@@ -30,37 +30,37 @@ export default function DealOfTheDayRail({ deals }) {
   const pad = (n) => n.toString().padStart(2, '0');
 
   return (
-    <section className="bg-beige-50 border-b border-beige-300 py-10">
+    <section className="bg-marigold-50 border-b border-marigold-200 py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Rail Header with Live Countdown */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 pb-4 border-b border-beige-300">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 pb-4 border-b border-mist-300">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-black">
               <span className="w-2 h-2 rounded-full bg-status-error animate-ping" />
               <span>Flash Marketplace Deals</span>
-              <span className="text-beige-400">|</span>
+              <span className="text-mist-400">|</span>
               <span className="text-grey-600 font-normal">Up to 45% Off Certified Stock</span>
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-black mt-1">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-black mt-1">
               Deals of the Day
             </h2>
           </div>
 
           {/* Countdown Clock Display */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 text-xs font-semibold text-black bg-white border border-beige-300 px-3 py-1.5 rounded shadow-subtle">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-black bg-white border border-mist-300 px-3 py-1.5 rounded shadow-subtle">
               <Timer className="w-4 h-4 text-black animate-pulse" />
               <span className="text-grey-600 text-[11px] uppercase mr-1">Ends in:</span>
-              <span className="font-mono bg-black text-white px-1.5 py-0.5 rounded text-xs font-bold">
+              <span className="font-mono bg-brand-800 text-marigold-300 px-1.5 py-0.5 rounded text-xs font-bold">
                 {pad(timeLeft.hours)}
               </span>
               <span className="font-bold">:</span>
-              <span className="font-mono bg-black text-white px-1.5 py-0.5 rounded text-xs font-bold">
+              <span className="font-mono bg-brand-800 text-marigold-300 px-1.5 py-0.5 rounded text-xs font-bold">
                 {pad(timeLeft.minutes)}
               </span>
               <span className="font-bold">:</span>
-              <span className="font-mono bg-black text-white px-1.5 py-0.5 rounded text-xs font-bold">
+              <span className="font-mono bg-brand-800 text-marigold-300 px-1.5 py-0.5 rounded text-xs font-bold">
                 {pad(timeLeft.seconds)}
               </span>
             </div>

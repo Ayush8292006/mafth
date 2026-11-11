@@ -5,30 +5,30 @@ import { ArrowRight } from 'lucide-react';
 export default function EditorialBanner({ inverted = false }) {
   if (inverted) {
     return (
-      <section className="bg-black text-white border-b border-grey-800 py-16 sm:py-20 overflow-hidden">
+      <section className="bg-brand-800 text-white border-b border-brand-900 py-16 sm:py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-4">
-              <span className="text-[11px] uppercase font-bold tracking-widest text-beige-400">
+              <span className="text-[11px] uppercase font-bold tracking-widest text-mist-400">
                 02 • THE RAWAT ARCHIVE
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight">
                 Authentic vegetable indigo. Hand-carved teakwood blocks. Centuries of Rajasthani lineage.
               </h2>
-              <p className="text-xs sm:text-sm text-grey-400 font-light leading-relaxed max-w-lg pt-1">
+              <p className="text-xs sm:text-sm text-white/75 font-light leading-relaxed max-w-lg pt-1">
                 Every meter of fabric requires seven days of sun drying, natural river washing, and organic fermented mud resist dyeing. Woven for those who value heritage over transient fast fashion.
               </p>
               <div className="pt-4 flex flex-wrap gap-3">
                 <Link
                   to="/category/mens-fashion"
-                  className="px-6 py-3 bg-white text-black text-xs uppercase tracking-wider font-bold rounded hover:bg-beige-100 transition-colors"
+                  className="px-6 py-3 bg-marigold-400 text-black text-xs uppercase tracking-wider font-bold rounded-full hover:bg-marigold-300 transition-colors"
                 >
                   Explore Collection
                 </Link>
                 <Link
                   to="/vendor/rawat-heritage"
-                  className="px-6 py-3 border border-grey-700 text-white text-xs uppercase tracking-wider font-semibold rounded hover:bg-white/10 transition-colors"
+                  className="px-6 py-3 border border-white/30 text-white rounded-full text-xs uppercase tracking-wider font-semibold rounded hover:bg-white/10 transition-colors"
                 >
                   Meet Master Weaver
                 </Link>
@@ -61,30 +61,30 @@ export default function EditorialBanner({ inverted = false }) {
   }
 
   return (
-    <section className="bg-beige-50 border-b border-beige-300 py-16 sm:py-20 overflow-hidden">
+    <section className="bg-mist-50 border-b border-mist-300 py-16 sm:py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           <div className="lg:col-span-6 order-2 lg:order-1">
-            <div className="relative aspect-[4/3] rounded overflow-hidden border border-beige-300 shadow-sm">
+            <div className="relative aspect-[4/3] rounded overflow-hidden border border-mist-300 shadow-sm">
               <img
                 src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80"
                 alt="Tactile stoneware ceramics"
                 loading="lazy"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 border border-beige-300 rounded text-xs">
-                <span className="font-serif font-bold text-black block">Studio Mitti Stoneware</span>
+              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-4 py-2 border border-mist-300 rounded text-xs">
+                <span className="font-display font-bold text-black block">Studio Mitti Stoneware</span>
                 <span className="text-[10px] text-grey-500 uppercase tracking-wider">Hand-thrown in Pondicherry</span>
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-6 order-1 lg:order-2 space-y-4">
-            <span className="text-[11px] uppercase font-bold tracking-widest text-beige-500">
+            <span className="text-[11px] uppercase font-bold tracking-widest text-brand-600">
               01 • EDITORIAL CURATION
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-black leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-black leading-tight">
               Tactile Living: Where Indian Clay Meets Modern Dining.
             </h2>
             <p className="text-xs sm:text-sm text-grey-600 font-light leading-relaxed max-w-lg pt-1">
@@ -93,7 +93,7 @@ export default function EditorialBanner({ inverted = false }) {
             <div className="pt-4 flex flex-wrap gap-3">
               <Link
                 to="/category/home-kitchen"
-                className="px-6 py-3 bg-black text-white text-xs uppercase tracking-wider font-bold rounded hover:bg-black/90 transition-colors shadow-subtle flex items-center gap-2"
+                className="px-6 py-3 bg-brand-700 text-white text-xs uppercase tracking-wider font-bold rounded hover:bg-brand-800 transition-colors shadow-subtle flex items-center gap-2"
               >
                 <span>Shop Studio Ceramics</span>
                 <ArrowRight className="w-4 h-4" />

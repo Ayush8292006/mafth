@@ -8,6 +8,7 @@ import EditorialBanner from '../../components/storefront/EditorialBanner';
 import CategoryProductRail from '../../components/storefront/CategoryProductRail';
 import ScrollReveal from '../../components/ui/ScrollReveal';
 import { mockApi } from '../../lib/mockApi';
+import { LeaderboardSection } from '../../components/storefront/Leaderboard';
 
 export default function HomePage() {
   const [deals, setDeals] = useState([]);
@@ -99,13 +100,13 @@ export default function HomePage() {
             subtitle="Department Showcase • 01"
             categorySlug="mens-fashion"
             products={mensFashion}
-            bg="bg-beige-50"
+            bg="bg-mist-50"
             count={4}
           />
         </ScrollReveal>
       )}
 
-      {/* 7. EDITORIAL BANNER 01 (BEIGE BAND) */}
+      {/* 7. EDITORIAL BANNER 01 (LIGHT BAND) */}
       <ScrollReveal variant="clip-reveal" duration={0.9}>
         <EditorialBanner inverted={false} />
       </ScrollReveal>
@@ -129,7 +130,7 @@ export default function HomePage() {
         <FeaturedVendorsRail />
       </ScrollReveal>
 
-      {/* 10. EDITORIAL BANNER 02 (BLACK BAND) */}
+      {/* 10. EDITORIAL BANNER 02 (EMERALD BAND) */}
       <ScrollReveal variant="clip-reveal" duration={0.9}>
         <EditorialBanner inverted={true} />
       </ScrollReveal>
@@ -142,11 +143,14 @@ export default function HomePage() {
             subtitle="Department Showcase • 03"
             categorySlug="electronics"
             products={electronics}
-            bg="bg-beige-50"
+            bg="bg-mist-50"
             count={4}
           />
         </ScrollReveal>
       )}
+
+      {/* TOP 20 BUYERS LEADERBOARD (shown only when Admin turns it on) */}
+      <LeaderboardSection />
 
       {/* 12. RECENTLY VIEWED RAIL */}
       {homeKitchen.length > 0 && (

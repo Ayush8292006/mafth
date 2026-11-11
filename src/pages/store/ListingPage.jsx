@@ -70,7 +70,7 @@ export default function ListingPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb & Header */}
-        <div className="mb-6 pb-4 border-b border-beige-300">
+        <div className="mb-6 pb-4 border-b border-mist-300">
           <nav className="text-[11px] text-grey-500 mb-2 flex items-center gap-1.5">
             <Link to="/" className="hover:text-black">Home</Link>
             <span>/</span>
@@ -83,7 +83,7 @@ export default function ListingPage() {
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <h1 className="font-serif text-2xl sm:text-3xl font-bold text-black">
+              <h1 className="font-display text-2xl sm:text-3xl font-bold text-black">
                 {pageTitle}
               </h1>
               <p className="text-xs text-grey-600 mt-1">
@@ -95,13 +95,13 @@ export default function ListingPage() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setIsMobileFiltersOpen(!isMobileFiltersOpen)}
-                className="md:hidden flex items-center gap-1.5 px-3 py-2 border border-beige-300 rounded text-xs font-semibold"
+                className="md:hidden flex items-center gap-1.5 px-3 py-2 border border-mist-300 rounded text-xs font-semibold"
               >
                 <SlidersHorizontal className="w-3.5 h-3.5" />
                 <span>Filters</span>
               </button>
 
-              <div className="flex items-center gap-2 border border-beige-300 rounded px-3 py-1.5 bg-beige-50">
+              <div className="flex items-center gap-2 border border-mist-300 rounded px-3 py-1.5 bg-mist-50">
                 <span className="text-[11px] text-grey-500 uppercase font-semibold">Sort by:</span>
                 <select
                   value={sortBy}
@@ -125,9 +125,9 @@ export default function ListingPage() {
           
           {/* Left Filter Sidebar (Desktop) */}
           <aside className={`md:block col-span-1 ${isMobileFiltersOpen ? 'block' : 'hidden md:block'}`}>
-            <div className="sticky top-24 space-y-6 p-4 rounded border border-beige-300 bg-beige-50/60">
+            <div className="sticky top-24 space-y-6 p-4 rounded border border-mist-300 bg-mist-50/60">
               
-              <div className="flex items-center justify-between pb-3 border-b border-beige-200">
+              <div className="flex items-center justify-between pb-3 border-b border-mist-200">
                 <span className="text-xs uppercase font-bold tracking-wider text-black flex items-center gap-1.5">
                   <SlidersHorizontal className="w-3.5 h-3.5" /> Filter Catalogue
                 </span>
@@ -168,7 +168,7 @@ export default function ListingPage() {
                   <button
                     onClick={() => setSelectedVendor('')}
                     className={`w-full text-left px-2 py-1 rounded flex items-center justify-between ${
-                      selectedVendor === '' ? 'bg-black text-white font-medium' : 'hover:bg-beige-200 text-grey-700'
+                      selectedVendor === '' ? 'bg-brand-700 text-white font-medium' : 'hover:bg-mist-200 text-grey-700'
                     }`}
                   >
                     <span>All Vendors</span>
@@ -178,7 +178,7 @@ export default function ListingPage() {
                       key={v.id}
                       onClick={() => setSelectedVendor(v.id)}
                       className={`w-full text-left px-2 py-1 rounded flex items-center justify-between truncate ${
-                        selectedVendor === v.id ? 'bg-black text-white font-medium' : 'hover:bg-beige-200 text-grey-700'
+                        selectedVendor === v.id ? 'bg-brand-700 text-white font-medium' : 'hover:bg-mist-200 text-grey-700'
                       }`}
                     >
                       <span className="truncate">{v.name}</span>
@@ -198,7 +198,7 @@ export default function ListingPage() {
                       key={rating}
                       onClick={() => setSelectedMinRating(selectedMinRating === rating ? 0 : rating)}
                       className={`w-full text-left px-2 py-1.5 rounded flex items-center justify-between ${
-                        selectedMinRating === rating ? 'bg-black text-white font-semibold' : 'hover:bg-beige-200 text-grey-700'
+                        selectedMinRating === rating ? 'bg-brand-700 text-white font-semibold' : 'hover:bg-mist-200 text-grey-700'
                       }`}
                     >
                       <span>★ {rating} & above</span>
@@ -216,20 +216,20 @@ export default function ListingPage() {
             {loading ? (
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
                 {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <div key={n} className="border border-beige-300 rounded p-4 space-y-3">
+                  <div key={n} className="border border-mist-300 rounded p-4 space-y-3">
                     <div className="aspect-[3/4] rounded shimmer" />
-                    <div className="h-4 bg-beige-200 rounded w-2/3" />
-                    <div className="h-4 bg-beige-200 rounded w-1/3" />
+                    <div className="h-4 bg-mist-200 rounded w-2/3" />
+                    <div className="h-4 bg-mist-200 rounded w-1/3" />
                   </div>
                 ))}
               </div>
             ) : products.length === 0 ? (
-              <div className="py-20 text-center bg-beige-50 rounded border border-beige-300 p-8">
-                <h3 className="font-serif text-xl font-bold text-black mb-1">No products match your criteria</h3>
+              <div className="py-20 text-center bg-mist-50 rounded border border-mist-300 p-8">
+                <h3 className="font-display text-xl font-bold text-black mb-1">No products match your criteria</h3>
                 <p className="text-xs text-grey-600 mb-4">Try relaxing your price filters or selecting a different vendor.</p>
                 <button
                   onClick={resetFilters}
-                  className="px-5 py-2 bg-black text-white text-xs uppercase font-semibold rounded hover:bg-black/90"
+                  className="px-5 py-2 bg-brand-700 text-white text-xs uppercase font-semibold rounded hover:bg-brand-800"
                 >
                   Clear Filters
                 </button>

@@ -28,6 +28,8 @@ export default function ProductDetailPage() {
 
   const [product, setProduct] = useState(null);
   const [similar, setSimilar] = useState([]);
+  const [otherSellers, setOtherSellers] = useState([]);
+  const [addedFrom, setAddedFrom] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState('');
@@ -45,6 +47,8 @@ export default function ProductDetailPage() {
           setSelectedSize(item.variants?.sizes?.[0] || 'Standard');
           setSelectedColor(item.variants?.colors?.[0] || null);
 
+          mockApi.getOtherSellers(item).then(setOtherSellers);
+
           // Fetch similar products in same category
           const similarRes = await mockApi.getProducts({ category: item.category, limit: 4 });
           setSimilar(similarRes.products.filter((p) => p.id !== item.id));
@@ -61,7 +65,7 @@ export default function ProductDetailPage() {
   if (loading) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-16 text-center">
-        <div className="w-8 h-8 border-2 border-black border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <div className="w-8 h-8 border-2 border-brand-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
         <p className="text-xs uppercase font-bold text-grey-500 tracking-wider">Loading Catalogue Details...</p>
       </div>
     );
@@ -70,7 +74,7 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <h2 className="font-serif text-2xl font-bold text-black mb-2">Product Not Found</h2>
+        <h2 className="font-display text-2xl font-bold text-black mb-2">Product Not Found</h2>
         <Link to="/" className="text-xs underline font-semibold">Return to Marketplace</Link>
       </div>
     );
@@ -106,7 +110,7 @@ export default function ProductDetailPage() {
         </nav>
 
         {/* 2-Column Product Studio: Gallery + Buy Box */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-16 border-b border-beige-300">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-16 border-b border-mist-300">
           
           {/* LEFT: Image Gallery with thumbnail strip */}
           <div className="lg:col-span-7 flex flex-col-reverse sm:flex-row gap-4">
@@ -118,7 +122,7 @@ export default function ProductDetailPage() {
                   key={idx}
                   onClick={() => setSelectedImage(idx)}
                   className={`w-16 h-20 sm:w-20 sm:h-24 rounded overflow-hidden border-2 flex-shrink-0 transition-all ${
-                    selectedImage === idx ? 'border-black shadow-sm' : 'border-beige-300 hover:border-beige-500'
+                    selectedImage === idx ? 'border-brand-600 shadow-sm' : 'border-mist-300 hover:border-mist-500'
                   }`}
                 >
                   <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
@@ -127,7 +131,7 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Main Featured Image */}
-            <div className="flex-1 relative aspect-[3/4] rounded overflow-hidden border border-beige-300 bg-beige-100 group">
+            <div className="flex-1 relative aspect-[3/4] rounded overflow-hidden border border-mist-300 bg-mist-100 group">
               <img
                 src={product.images?.[selectedImage] || product.primaryImage}
                 alt={product.title}
@@ -137,7 +141,7 @@ export default function ProductDetailPage() {
               {/* Wishlist toggle */}
               <button
                 onClick={() => toggleWishlist(product)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-beige-300 flex items-center justify-center text-black hover:bg-white shadow-sm transition-transform active:scale-95"
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-mist-300 flex items-center justify-center text-black hover:bg-white shadow-sm transition-transform active:scale-95"
               >
                 <Heart className={`w-5 h-5 ${inWishlist ? 'fill-black text-black' : ''}`} />
               </button>
@@ -148,8 +152,8 @@ export default function ProductDetailPage() {
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               {/* Brand & Vendor Badge */}
-              <div className="flex items-center justify-between pb-2 border-b border-beige-200">
-                <span className="text-xs uppercase font-bold text-beige-500 tracking-wider">
+              <div className="flex items-center justify-between pb-2 border-b border-mist-200">
+                <span className="text-xs uppercase font-bold text-brand-600 tracking-wider">
                   {product.brand}
                 </span>
                 <span className="text-[11px] text-grey-500 flex items-center gap-1">
@@ -159,14 +163,14 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Title */}
-              <h1 className="font-serif text-2xl sm:text-3xl font-bold text-black mt-3 leading-snug">
+              <h1 className="font-display text-2xl sm:text-3xl font-bold text-black mt-3 leading-snug">
                 {product.title}
               </h1>
 
               {/* Rating */}
               <div className="flex items-center gap-2 mt-2">
-                <div className="flex items-center gap-1 bg-black text-white px-2 py-0.5 rounded text-xs font-bold">
-                  <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                <div className="flex items-center gap-1 bg-brand-700 text-white px-2 py-0.5 rounded text-xs font-bold">
+                  <Star className="w-3 h-3 fill-marigold-500 text-marigold-500" />
                   <span>{product.rating}</span>
                 </div>
                 <span className="text-xs text-grey-600">
@@ -175,9 +179,9 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Price Box */}
-              <div className="mt-4 p-4 rounded bg-beige-50 border border-beige-300">
+              <div className="mt-4 p-4 rounded bg-mist-50 border border-mist-300">
                 <div className="flex items-baseline gap-3">
-                  <span className="font-serif text-3xl font-bold text-black">
+                  <span className="font-display text-3xl font-bold text-black">
                     {formatPrice(product.price)}
                   </span>
                   {product.mrp > product.price && (
@@ -185,7 +189,7 @@ export default function ProductDetailPage() {
                       <span className="text-sm text-grey-400 line-through">
                         {formatPrice(product.mrp)}
                       </span>
-                      <span className="text-xs font-bold text-status-success uppercase bg-white border border-beige-300 px-2 py-0.5 rounded">
+                      <span className="text-xs font-bold text-status-success uppercase bg-white border border-mist-300 px-2 py-0.5 rounded">
                         Save {product.discount}% ({formatPrice(savings)})
                       </span>
                     </>
@@ -197,12 +201,12 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Bank Offers pill */}
-              <div className="mt-4 p-3 rounded border border-beige-300 bg-white flex items-center justify-between text-xs">
+              <div className="mt-4 p-3 rounded border border-mist-300 bg-white flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2">
                   <CreditCard className="w-4 h-4 text-black" />
                   <span>10% Instant Off with HDFC & ICICI Cards</span>
                 </div>
-                <span className="font-mono font-bold text-black bg-beige-100 px-2 py-0.5 rounded text-[11px]">
+                <span className="font-mono font-bold text-black bg-mist-100 px-2 py-0.5 rounded text-[11px]">
                   MAFTH10
                 </span>
               </div>
@@ -221,8 +225,8 @@ export default function ProductDetailPage() {
                         onClick={() => setSelectedSize(s)}
                         className={`px-4 py-2 text-xs font-semibold rounded border transition-colors ${
                           selectedSize === s
-                            ? 'bg-black text-white border-black'
-                            : 'border-beige-300 bg-beige-50 text-black hover:border-black'
+                            ? 'bg-brand-700 text-white border-brand-700'
+                            : 'border-mist-300 bg-mist-50 text-black hover:border-brand-600'
                         }`}
                       >
                         {s}
@@ -245,7 +249,7 @@ export default function ProductDetailPage() {
                         onClick={() => setSelectedColor(c)}
                         title={c.name}
                         className={`w-7 h-7 rounded-full border-2 p-0.5 transition-all ${
-                          selectedColor?.name === c.name ? 'border-black scale-110' : 'border-beige-300'
+                          selectedColor?.name === c.name ? 'border-brand-600 scale-110' : 'border-mist-300'
                         }`}
                       >
                         <span
@@ -259,11 +263,11 @@ export default function ProductDetailPage() {
               )}
 
               {/* Pincode Check */}
-              <div className="mt-6 pt-4 border-t border-beige-200">
+              <div className="mt-6 pt-4 border-t border-mist-200">
                 <div className="flex items-center justify-between text-xs mb-1">
                   <span className="text-grey-600">Delivering to:</span>
                   <span className="font-bold text-black flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-beige-500" />
+                    <MapPin className="w-3.5 h-3.5 text-brand-600" />
                     {deliveryCity} ({deliveryPincode})
                   </span>
                 </div>
@@ -282,7 +286,7 @@ export default function ProductDetailPage() {
                   className={`py-3.5 text-xs uppercase tracking-wider font-bold rounded flex items-center justify-center gap-2 border transition-all ${
                     addedFeedback
                       ? 'bg-status-success text-white border-status-success'
-                      : 'border-black text-black hover:bg-beige-100'
+                      : 'border-brand-600 text-black hover:bg-mist-100'
                   }`}
                 >
                   {addedFeedback ? (
@@ -300,14 +304,14 @@ export default function ProductDetailPage() {
 
                 <button
                   onClick={handleBuyNow}
-                  className="py-3.5 bg-black text-white text-xs uppercase tracking-wider font-bold rounded hover:bg-black/90 transition-all shadow-subtle"
+                  className="py-3.5 bg-brand-700 text-white text-xs uppercase tracking-wider font-bold rounded hover:bg-brand-800 transition-all shadow-subtle"
                 >
                   Buy Now
                 </button>
               </div>
 
               {/* Sold by Vendor card */}
-              <div className="p-3 bg-beige-50 border border-beige-300 rounded flex items-center justify-between text-xs">
+              <div className="p-3 bg-mist-50 border border-mist-300 rounded flex items-center justify-between text-xs">
                 <div>
                   <span className="text-[10px] text-grey-500 block">Sold & Shipped directly by:</span>
                   <Link to={`/vendor/${product.vendorId}`} className="font-bold text-black hover:underline">
@@ -319,18 +323,56 @@ export default function ProductDetailPage() {
                   <span className="text-xs font-semibold text-black">Within 24 Hours</span>
                 </div>
               </div>
+
+              {/* Multi-vendor: same item from other sellers */}
+              {otherSellers.length > 0 && (
+                <div className="border border-mist-300 rounded-lg overflow-hidden">
+                  <div className="px-3 py-2 bg-brand-50 text-[11px] font-bold uppercase tracking-wider text-brand-800 flex items-center gap-1.5">
+                    <Store className="w-3.5 h-3.5" /> Also sold by {otherSellers.length} other sellers
+                  </div>
+                  <ul className="divide-y divide-mist-200">
+                    {otherSellers.map((s) => (
+                      <li key={s.vendorId} className="px-3 py-2.5 flex items-center justify-between gap-3 text-xs">
+                        <div className="min-w-0">
+                          <Link to={`/vendor/${s.vendorSlug}`} className="font-bold text-black hover:text-brand-700 truncate block">
+                            {s.vendorName}
+                          </Link>
+                          <span className="text-grey-500 flex items-center gap-1">
+                            <Star className="w-3 h-3 fill-marigold-500 text-marigold-500" /> {s.rating} · {s.deliveryEstimate}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 flex-shrink-0">
+                          <span className="font-bold text-sm">{formatPrice(s.price)}</span>
+                          <button
+                            onClick={() => {
+                              addItem(
+                                { ...product, price: s.price, vendorId: s.vendorId, vendorName: s.vendorName, vendorSlug: s.vendorSlug, deliveryEstimate: s.deliveryEstimate },
+                                { size: selectedSize, color: selectedColor }
+                              );
+                              setAddedFrom(s.vendorId);
+                            }}
+                            className="px-2.5 py-1.5 rounded-md border border-brand-700 text-brand-700 font-bold hover:bg-brand-700 hover:text-white transition-colors"
+                          >
+                            {addedFrom === s.vendorId ? 'Added' : 'Add'}
+                          </button>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
           </div>
         </div>
 
         {/* Specifications & Guild Authenticity Table */}
-        <div className="py-12 border-b border-beige-300 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="py-12 border-b border-mist-300 grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h3 className="font-serif text-xl font-bold text-black mb-4">
+            <h3 className="font-display text-xl font-bold text-black mb-4">
               Materials & Master Guild Specifications
             </h3>
-            <div className="border border-beige-300 rounded divide-y divide-beige-200 text-xs">
+            <div className="border border-mist-300 rounded divide-y divide-mist-200 text-xs">
               {Object.entries(product.specs || {}).map(([key, val]) => (
                 <div key={key} className="flex p-3 bg-white">
                   <span className="w-1/3 font-semibold text-grey-700">{key}</span>
@@ -341,13 +383,13 @@ export default function ProductDetailPage() {
           </div>
 
           <div>
-            <h3 className="font-serif text-xl font-bold text-black mb-4">
+            <h3 className="font-display text-xl font-bold text-black mb-4">
               About the Craft & Provenance
             </h3>
             <p className="text-xs text-grey-600 leading-relaxed mb-4">
               {product.description}
             </p>
-            <div className="p-4 bg-beige-50 border border-beige-300 rounded space-y-2 text-xs">
+            <div className="p-4 bg-mist-50 border border-mist-300 rounded space-y-2 text-xs">
               <div className="flex items-center gap-2 font-semibold text-black">
                 <ShieldCheck className="w-4 h-4 text-status-success" />
                 <span>MAFTH Authentic Guild Verification</span>
@@ -362,7 +404,7 @@ export default function ProductDetailPage() {
         {/* Similar Items Rail */}
         {similar.length > 0 && (
           <div className="py-12">
-            <h3 className="font-serif text-2xl font-bold text-black mb-6">
+            <h3 className="font-display text-2xl font-bold text-black mb-6">
               Similar Handcrafted Items
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
@@ -376,7 +418,7 @@ export default function ProductDetailPage() {
       </div>
 
       {/* Mobile Sticky Add to Bag / Buy Now Bar */}
-      <div className="md:hidden fixed bottom-14 left-0 right-0 z-30 bg-white border-t border-beige-300 p-3 flex items-center justify-between gap-3 shadow-lift">
+      <div className="md:hidden fixed bottom-14 left-0 right-0 z-30 bg-white border-t border-mist-300 p-3 flex items-center justify-between gap-3 shadow-lift">
         <div>
           <span className="text-[10px] text-grey-500 uppercase block">Total Price</span>
           <span className="text-base font-bold text-black">{formatPrice(product.price)}</span>
@@ -384,13 +426,13 @@ export default function ProductDetailPage() {
         <div className="flex gap-2 flex-1 justify-end">
           <button
             onClick={handleAddToCart}
-            className="px-4 py-2.5 text-xs uppercase font-bold rounded border border-black text-black"
+            className="px-4 py-2.5 text-xs uppercase font-bold rounded border border-brand-700 text-brand-700"
           >
             {addedFeedback ? 'Added' : 'Add to Bag'}
           </button>
           <button
             onClick={handleBuyNow}
-            className="px-5 py-2.5 text-xs uppercase font-bold rounded bg-black text-white shadow-sm"
+            className="px-5 py-2.5 text-xs uppercase font-bold rounded bg-brand-700 text-white shadow-sm"
           >
             Buy Now
           </button>

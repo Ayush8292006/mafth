@@ -8,9 +8,12 @@ const IMAGE =
 export default function InitialIntroLoader({ onComplete }) {
   const [progress, setProgress] = useState(0);
   const [isDone, setIsDone] = useState(false);
+  // Only 2 lines, each shown for half of the loader with a slow fade
+  const LINES = ['All Departments', 'One Marketplace'];
+  const lineIdx = progress < 50 ? 0 : 1;
 
   useEffect(() => {
-    if (sessionStorage.getItem('mafth_intro_played_v4')) {
+    if (sessionStorage.getItem('mafth_intro_played_v5')) {
       setIsDone(true);
       onComplete?.();
       return;
@@ -28,7 +31,7 @@ export default function InitialIntroLoader({ onComplete }) {
         clearInterval(id);
         setTimeout(() => {
           setIsDone(true);
-          sessionStorage.setItem('mafth_intro_played_v4', 'true');
+          sessionStorage.setItem('mafth_intro_played_v5', 'true');
           onComplete?.();
         }, 200);
       }
@@ -43,7 +46,7 @@ export default function InitialIntroLoader({ onComplete }) {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ y: '-100%', transition: { duration: 0.8, ease: [0.85, 0, 0.15, 1] } }}
-          className="fixed inset-0 z-50 bg-[#090909] text-white flex flex-col items-center justify-center overflow-hidden select-none"
+          className="fixed inset-0 z-50 bg-brand-950 text-white flex flex-col items-center justify-center overflow-hidden select-none"
         >
           {/* Background */}
           <div className="absolute inset-0 opacity-30">
@@ -52,7 +55,7 @@ export default function InitialIntroLoader({ onComplete }) {
               alt=""
               className="w-full h-full object-cover brightness-[0.5]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-[#090909]/70 to-[#090909]/90" />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/80 to-brand-950/95" />
           </div>
 
           {/* Content */}
@@ -70,20 +73,26 @@ export default function InitialIntroLoader({ onComplete }) {
               initial={{ opacity: 0, letterSpacing: '0.05em' }}
               animate={{ opacity: 1, letterSpacing: '0.25em' }}
               transition={{ duration: 0.8 }}
-              className="font-serif text-3xl sm:text-5xl font-bold uppercase tracking-widest mb-3"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+              className="font-display text-3xl sm:text-5xl font-bold uppercase tracking-widest mb-3"
+              
             >
               M A F T H
             </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-xs sm:text-sm text-beige-300 tracking-wider uppercase mb-10"
-            >
-              Verified Indian Marketplace
-            </motion.p>
+            <div className="h-8 mb-10 relative w-72 sm:w-96">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={lineIdx}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.6, ease: 'easeInOut' }}
+                  className="absolute inset-0 text-sm sm:text-base uppercase tracking-[0.3em] font-semibold text-marigold-300"
+                >
+                  {LINES[lineIdx]}
+                </motion.p>
+              </AnimatePresence>
+            </div>
 
             {/* Progress */}
             <div className="w-56 sm:w-72">
@@ -93,7 +102,7 @@ export default function InitialIntroLoader({ onComplete }) {
               </div>
               <div className="h-px w-full bg-white/15 overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-[#FF007A] to-[#FFE600]"
+                  className="h-full bg-gradient-to-r from-brand-400 to-marigold-400"
                   style={{ width: `${progress}%` }}
                 />
               </div>
