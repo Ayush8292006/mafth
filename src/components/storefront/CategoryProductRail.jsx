@@ -15,18 +15,18 @@ export default function CategoryProductRail({
   const displayItems = products.slice(0, count);
 
   return (
-    <section className={`${bg} border-b border-mist-300 py-12`}>
+    <section className={`${bg} border-b border-mist-300 py-8 sm:py-12`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Rail Header */}
-        <div className="flex items-end justify-between gap-4 mb-6 pb-3 border-b border-mist-200">
+        <div className="flex items-end justify-between gap-4 mb-4 sm:mb-6 pb-3 border-b border-mist-200">
           <div>
             {subtitle && (
               <span className="text-[10px] uppercase font-bold text-brand-600 tracking-wider block">
                 {subtitle}
               </span>
             )}
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-black mt-0.5">
+            <h2 className="font-display text-xl sm:text-3xl font-bold text-black mt-0.5">
               {title}
             </h2>
           </div>
@@ -43,7 +43,7 @@ export default function CategoryProductRail({
         </div>
 
         {/* Product Cards Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-6">
           {displayItems.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

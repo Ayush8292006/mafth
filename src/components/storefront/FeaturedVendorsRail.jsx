@@ -7,16 +7,16 @@ export default function FeaturedVendorsRail() {
   const featured = vendors.slice(0, 4);
 
   return (
-    <section className="bg-white border-b border-mist-300 py-12">
+    <section className="bg-white border-b border-mist-300 py-8 sm:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-5 sm:mb-8">
           <div>
             <span className="text-[10px] uppercase font-bold text-brand-600 tracking-wider">
               Independent Guilds & Ateliers
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-black mt-1">
+            <h2 className="font-display text-xl sm:text-3xl font-bold text-black mt-1">
               Featured Verified Vendors
             </h2>
             <p className="text-xs text-grey-600 mt-1 max-w-xl">
@@ -33,11 +33,11 @@ export default function FeaturedVendorsRail() {
         </div>
 
         {/* 4 Vendor Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0">
           {featured.map((vendor) => (
             <div
               key={vendor.id}
-              className="group bg-mist-50 border border-mist-300 rounded overflow-hidden flex flex-col justify-between hover:border-brand-600 transition-all duration-300 hover:shadow-card"
+              className="group w-[78%] sm:w-auto flex-shrink-0 snap-start bg-mist-50 border border-mist-300 rounded-lg overflow-hidden flex flex-col justify-between hover:border-brand-600 transition-all duration-300 hover:shadow-card"
             >
               {/* Vendor Banner */}
               <div className="relative aspect-[16/9] w-full overflow-hidden bg-mist-200">

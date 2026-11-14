@@ -72,10 +72,10 @@ export default function CartPage() {
   }
 
   return (
-    <div className="bg-white min-h-screen py-10">
+    <div className="bg-white min-h-screen py-5 sm:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <h1 className="font-display text-3xl font-bold text-black mb-8 pb-4 border-b border-mist-300">
+        <h1 className="font-display text-2xl sm:text-3xl font-bold text-black mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-mist-300">
           Shopping Bag ({items.length} {items.length === 1 ? 'item' : 'items'})
         </h1>
 
@@ -90,10 +90,10 @@ export default function CartPage() {
             {groups.map((g, gi) => (
             <div key={g.vendorId || gi} className="border border-mist-300 rounded-lg overflow-hidden">
               <div className="flex items-center justify-between px-4 py-2.5 bg-mist-50 border-b border-mist-300 text-xs">
-                <span className="flex items-center gap-2">
-                  <Store className="w-4 h-4 text-brand-700" />
-                  <span className="text-grey-500">Package {gi + 1} · Sold by</span>
-                  <Link to={`/vendor/${g.vendorSlug}`} className="font-bold text-black hover:text-brand-700">{g.vendorName}</Link>
+                <span className="flex items-center gap-2 min-w-0">
+                  <Store className="w-4 h-4 text-brand-700 flex-shrink-0" />
+                  <span className="text-grey-500 flex-shrink-0">Pkg {gi + 1} ·</span>
+                  <Link to={`/vendor/${g.vendorSlug}`} className="font-bold text-black hover:text-brand-700 truncate">{g.vendorName}</Link>
                 </span>
                 <span className="font-semibold">
                   {formatPrice(g.items.reduce((a, it) => a + it.price * it.quantity, 0))}

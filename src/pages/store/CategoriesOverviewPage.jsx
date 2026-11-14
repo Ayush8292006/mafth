@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function CategoriesOverviewPage() {
   return (
-    <div className="bg-white min-h-screen py-10">
+    <div className="bg-white min-h-screen py-5 sm:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -13,7 +13,7 @@ export default function CategoriesOverviewPage() {
           <span className="text-[11px] uppercase font-bold text-brand-600 tracking-wider">
             All 10 Marketplace Departments
           </span>
-          <h1 className="font-display text-3xl sm:text-4xl font-bold text-black mt-1">
+          <h1 className="font-display text-2xl sm:text-4xl font-bold text-black mt-1">
             Browse by Department
           </h1>
           <p className="text-xs text-grey-600 mt-1 max-w-xl">

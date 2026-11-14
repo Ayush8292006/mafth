@@ -70,7 +70,7 @@ export default function LeaderboardPage() {
           <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-marigold-300">
             <Trophy className="w-4 h-4" /> MAFTH Leaderboard
           </span>
-          <h1 className="font-display text-4xl sm:text-5xl font-extrabold mt-3">{leaderboardTitle}</h1>
+          <h1 className="font-display text-3xl sm:text-5xl font-extrabold mt-3">{leaderboardTitle}</h1>
           <p className="text-white/70 text-sm mt-2">1 point for every ₹100 you spend. Rankings refresh every month.</p>
           <div className="mt-10">
             <Podium buyers={top.slice(0, 3)} showInsta={leaderboardShowInsta} />
@@ -82,20 +82,20 @@ export default function LeaderboardPage() {
         <div className="lg:col-span-2 bg-white border border-mist-300 rounded-xl overflow-hidden">
           <ol className="divide-y divide-mist-200">
             {top.slice(3).map((b) => (
-              <li key={b.id} className={`flex items-center gap-4 px-5 py-3 ${b.id === CURRENT_USER_ID ? 'bg-marigold-50' : ''}`}>
-                <span className="w-8 font-display text-lg font-bold text-grey-400">#{b.rank}</span>
-                <span className="w-9 h-9 rounded-full bg-brand-100 text-brand-800 text-xs font-bold flex items-center justify-center">
+              <li key={b.id} className={`flex items-center gap-3 sm:gap-4 px-3 sm:px-5 py-3 ${b.id === CURRENT_USER_ID ? 'bg-marigold-50' : ''}`}>
+                <span className="w-7 sm:w-8 font-display text-base sm:text-lg font-bold text-grey-400 flex-shrink-0">#{b.rank}</span>
+                <span className="hidden sm:flex w-9 h-9 rounded-full bg-brand-100 text-brand-800 text-xs font-bold items-center justify-center flex-shrink-0">
                   {b.name.split(' ').map((p) => p[0]).join('')}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="font-semibold text-black truncate">
                     {b.name} {b.id === CURRENT_USER_ID && <span className="chip bg-marigold-400 text-black ml-1">You</span>}
                   </div>
-                  <div className="text-xs text-grey-500 flex items-center gap-2">
+                  <div className="text-xs text-grey-500 flex flex-wrap items-center gap-x-2">
                     {b.city} · {b.orders} orders {leaderboardShowInsta && <InstaLink handle={b.instagram} />}
                   </div>
                 </div>
-                <span className="font-bold text-brand-700 text-sm">{points(b.spend).toLocaleString('en-IN')} pts</span>
+                <span className="font-bold text-brand-700 text-xs sm:text-sm whitespace-nowrap">{points(b.spend).toLocaleString('en-IN')} pts</span>
               </li>
             ))}
           </ol>

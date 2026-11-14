@@ -35,7 +35,7 @@ export default function BankOffersStrip() {
   ];
 
   return (
-    <section className="bg-white border-b border-mist-300 py-8">
+    <section className="bg-white border-b border-mist-300 py-6 sm:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section title */}
@@ -52,11 +52,11 @@ export default function BankOffersStrip() {
         </div>
 
         {/* 3 Bank Offer Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="flex md:grid md:grid-cols-3 gap-3 md:gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0">
           {offers.map((offer, idx) => (
             <div
               key={idx}
-              className="p-4 rounded border border-mist-300 bg-mist-50 flex flex-col justify-between hover:border-brand-600 transition-colors"
+              className="w-[82%] md:w-auto flex-shrink-0 snap-start p-4 rounded-lg border border-mist-300 bg-mist-50 flex flex-col justify-between hover:border-brand-600 transition-colors"
             >
               <div>
                 <div className="flex items-center justify-between mb-2">

@@ -30,11 +30,11 @@ export default function DealOfTheDayRail({ deals }) {
   const pad = (n) => n.toString().padStart(2, '0');
 
   return (
-    <section className="bg-marigold-50 border-b border-marigold-200 py-10">
+    <section className="bg-marigold-50 border-b border-marigold-200 py-8 sm:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Rail Header with Live Countdown */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 pb-4 border-b border-mist-300">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4 sm:mb-6 pb-4 border-b border-mist-300">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-black">
               <span className="w-2 h-2 rounded-full bg-status-error animate-ping" />
@@ -42,7 +42,7 @@ export default function DealOfTheDayRail({ deals }) {
               <span className="text-mist-400">|</span>
               <span className="text-grey-600 font-normal">Up to 45% Off Certified Stock</span>
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-black mt-1">
+            <h2 className="font-display text-xl sm:text-3xl font-bold text-black mt-1">
               Deals of the Day
             </h2>
           </div>
@@ -76,7 +76,7 @@ export default function DealOfTheDayRail({ deals }) {
         </div>
 
         {/* Product Cards Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-6">
           {deals.slice(0, 4).map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

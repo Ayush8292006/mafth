@@ -119,6 +119,8 @@ export const useCartStore = create(
     }),
     {
       name: 'mafth-cart-storage',
+      // never restore the drawer as open after a reload
+      partialize: ({ isDrawerOpen, ...rest }) => rest,
     }
   )
 );

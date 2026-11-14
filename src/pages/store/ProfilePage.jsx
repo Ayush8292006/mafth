@@ -46,25 +46,25 @@ export default function ProfilePage() {
   ];
 
   return (
-    <div className="bg-white min-h-screen py-10">
+    <div className="bg-white min-h-screen py-5 sm:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Profile Header */}
-        <div className="p-6 bg-mist-50 border border-mist-300 rounded mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="p-4 sm:p-6 bg-mist-50 border border-mist-300 rounded-xl mb-4 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <img
               src={user.avatar}
               alt={user.name}
-              className="w-16 h-16 rounded-full border-2 border-brand-600 object-cover"
+              className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-brand-600 object-cover flex-shrink-0"
             />
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="font-display text-xl font-bold text-black">{user.name}</h1>
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <h1 className="font-display text-lg sm:text-xl font-bold text-black">{user.name}</h1>
                 <span className="text-[10px] uppercase font-bold bg-brand-700 text-white px-2 py-0.5 rounded">
                   {user.loyaltyTier}
                 </span>
               </div>
-              <p className="text-xs text-grey-600 mt-0.5">{user.email} • {user.phone}</p>
+              <p className="text-xs text-grey-600 mt-0.5 break-all">{user.email}<span className="hidden sm:inline"> • {user.phone}</span></p>
               <p className="text-[11px] text-brand-600 mt-1">Patron Member since {user.joinedDate}</p>
             </div>
           </div>
@@ -82,7 +82,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Quick access: Sell on MAFTH, Help, Leaderboard, Offers */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mb-4">
           {quickLinks.map((q) => {
             const inner = (
               <>
@@ -117,10 +117,10 @@ export default function ProfilePage() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-mist-300 text-xs font-semibold uppercase tracking-wider mb-8">
+        <div className="flex border-b border-mist-300 text-[11px] sm:text-xs font-semibold uppercase tracking-wide sm:tracking-wider mb-6 sm:mb-8 overflow-x-auto no-scrollbar">
           <button
             onClick={() => setActiveTab('orders')}
-            className={`py-3 px-4 border-b-2 transition-colors flex items-center gap-2 ${
+            className={`py-3 px-3 sm:px-4 border-b-2 transition-colors flex items-center gap-2 whitespace-nowrap ${
               activeTab === 'orders' ? 'border-brand-600 text-black' : 'border-transparent text-grey-500 hover:text-black'
             }`}
           >
@@ -129,7 +129,7 @@ export default function ProfilePage() {
           </button>
           <button
             onClick={() => setActiveTab('addresses')}
-            className={`py-3 px-4 border-b-2 transition-colors flex items-center gap-2 ${
+            className={`py-3 px-3 sm:px-4 border-b-2 transition-colors flex items-center gap-2 whitespace-nowrap ${
               activeTab === 'addresses' ? 'border-brand-600 text-black' : 'border-transparent text-grey-500 hover:text-black'
             }`}
           >

@@ -42,12 +42,12 @@ const PODIUM = [
 export function Podium({ buyers, showInsta }) {
   const order = [buyers[1], buyers[0], buyers[2]].filter(Boolean);
   return (
-    <div className="flex items-end justify-center gap-3 sm:gap-6">
+    <div className="flex items-end justify-center gap-2 sm:gap-6">
       {order.map((b) => {
         const st = PODIUM[b.rank - 1];
         const Icon = st.icon;
         return (
-          <div key={b.id} className="flex flex-col items-center w-28 sm:w-36 text-center">
+          <div key={b.id} className="flex flex-col items-center w-[6.5rem] sm:w-36 text-center min-w-0">
             <div className="relative">
               <span className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-brand-700 ring-4 ${st.ring} flex items-center justify-center font-display text-xl sm:text-2xl font-bold text-white`}>
                 {initials(b.name)}
@@ -56,7 +56,7 @@ export function Podium({ buyers, showInsta }) {
                 <Icon className="w-4 h-4" />
               </span>
             </div>
-            <div className="font-bold text-white mt-2 text-sm leading-tight">{b.name}</div>
+            <div className="font-bold text-white mt-2 text-xs sm:text-sm leading-tight truncate w-full">{b.name}</div>
             <div className="text-[11px] text-white/60">{b.city}</div>
             {showInsta && <InstaLink handle={b.instagram} light />}
             <div className={`mt-2 w-full ${st.h} rounded-t-xl bg-white/10 border border-white/15 flex flex-col items-center justify-center`}>
@@ -79,12 +79,12 @@ export function LeaderboardSection() {
   return (
     <section className="bg-brand-900 text-white overflow-hidden relative">
       <div className="absolute -left-20 -top-20 w-72 h-72 rounded-full bg-marigold-400/10" />
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid lg:grid-cols-2 gap-10 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
         <div>
           <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-marigold-300">
             <Trophy className="w-4 h-4" /> MAFTH Leaderboard
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-extrabold mt-3">{leaderboardTitle}</h2>
+          <h2 className="font-display text-2xl sm:text-4xl font-extrabold mt-3">{leaderboardTitle}</h2>
           <p className="text-white/70 text-sm mt-2 max-w-md">
             Shop more, climb higher. Top buyers get featured here — add your Instagram handle and get a shout-out.
           </p>
@@ -92,8 +92,10 @@ export function LeaderboardSection() {
             {top.slice(3, 8).map((b) => (
               <li key={b.id} className="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2">
                 <span className="w-6 text-sm font-bold text-marigold-300">#{b.rank}</span>
-                <span className="flex-1 text-sm font-semibold truncate">{b.name}</span>
-                {leaderboardShowInsta && <InstaLink handle={b.instagram} light />}
+                <span className="flex-1 min-w-0">
+                  <span className="block text-sm font-semibold truncate">{b.name}</span>
+                  {leaderboardShowInsta && <InstaLink handle={b.instagram} light />}
+                </span>
                 <span className="text-xs text-white/60">{points(b.spend).toLocaleString('en-IN')} pts</span>
               </li>
             ))}

@@ -7,17 +7,22 @@ import MobileTabBar from './MobileTabBar';
 import InitialIntroLoader from '../ui/InitialIntroLoader';
 import OffersPopup from './OffersPopup';
 import { useUiStore } from '../../store/useUiStore';
+import { useCartStore } from '../../store/useCartStore';
 import { Gift } from 'lucide-react';
 import Lenis from 'lenis';
 
 export default function StorefrontLayout() {
   const { pathname } = useLocation();
   const openOffers = useUiStore((s) => s.openOffers);
+  const closeDrawer = useCartStore((s) => s.closeDrawer);
+  // Pages with their own sticky bottom bar don't need the floating Offers button
+  const hideFloatingOffers = /^\/(product|cart|checkout|order-success)/.test(pathname);
 
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+    closeDrawer();
+  }, [pathname, closeDrawer]);
 
   // Lenis smooth scroll for storefront
   useEffect(() => {
@@ -56,13 +61,16 @@ export default function StorefrontLayout() {
       <CartDrawer />
       <MobileTabBar />
       <OffersPopup />
-      <button
-        onClick={openOffers}
-        aria-label="Open offers"
-        className="fixed right-4 bottom-20 md:bottom-6 z-30 flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-marigold-400 text-black text-xs font-extrabold shadow-lift hover:bg-marigold-300 transition-colors"
-      >
-        <Gift className="w-4 h-4" /> Offers
-      </button>
+      {!hideFloatingOffers && (
+        <button
+          onClick={openOffers}
+          aria-label="Open offers"
+          className="fixed right-3 bottom-[4.5rem] md:right-4 md:bottom-6 z-30 flex items-center gap-2 p-3 md:pl-3 md:pr-4 md:py-2.5 rounded-full bg-marigold-400 text-black text-xs font-extrabold shadow-lift hover:bg-marigold-300 transition-colors"
+        >
+          <Gift className="w-5 h-5 md:w-4 md:h-4" />
+          <span className="hidden md:inline">Offers</span>
+        </button>
+      )}
     </div>
   );
 }

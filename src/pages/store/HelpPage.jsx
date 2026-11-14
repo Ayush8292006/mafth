@@ -3,14 +3,14 @@ import { HelpCircle, ShieldCheck, RotateCcw, Truck, MessageSquare, PhoneCall, Ma
 
 export default function HelpPage() {
   return (
-    <div className="bg-white min-h-screen py-12">
+    <div className="bg-white min-h-screen py-6 sm:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
         <div className="text-center mb-12">
           <span className="text-[11px] uppercase font-bold text-brand-600 tracking-wider">
             MAFTH 24x7 Customer Care & Vendor Concierge
           </span>
-          <h1 className="font-display text-3xl sm:text-4xl font-bold text-black mt-2">
+          <h1 className="font-display text-2xl sm:text-4xl font-bold text-black mt-2">
             How can our concierge assist you?
           </h1>
           <p className="text-xs text-grey-600 mt-2 max-w-md mx-auto">

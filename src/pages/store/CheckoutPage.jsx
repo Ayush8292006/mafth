@@ -37,10 +37,10 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="bg-white min-h-screen py-10">
+    <div className="bg-white min-h-screen py-5 sm:py-10">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         
-        <h1 className="font-display text-3xl font-bold text-black mb-8 pb-4 border-b border-mist-300">
+        <h1 className="font-display text-2xl sm:text-3xl font-bold text-black mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-mist-300">
           Secure Marketplace Checkout
         </h1>
 

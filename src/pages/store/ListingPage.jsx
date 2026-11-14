@@ -83,7 +83,7 @@ export default function ListingPage() {
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <h1 className="font-display text-2xl sm:text-3xl font-bold text-black">
+              <h1 className="font-display text-xl sm:text-3xl font-bold text-black">
                 {pageTitle}
               </h1>
               <p className="text-xs text-grey-600 mt-1">
@@ -214,7 +214,7 @@ export default function ListingPage() {
           {/* Right Product Grid */}
           <div className="col-span-1 md:col-span-3">
             {loading ? (
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-6">
                 {[1, 2, 3, 4, 5, 6].map((n) => (
                   <div key={n} className="border border-mist-300 rounded p-4 space-y-3">
                     <div className="aspect-[3/4] rounded shimmer" />
@@ -235,7 +235,7 @@ export default function ListingPage() {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-6">
                 {products.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}

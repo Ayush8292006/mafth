@@ -19,10 +19,20 @@ export default function HeroCarousel() {
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
+  // Swipe support on touch screens
+  const [touchX, setTouchX] = useState(null);
+  const onTouchStart = (e) => setTouchX(e.touches[0].clientX);
+  const onTouchEnd = (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) (dx < 0 ? nextSlide : prevSlide)();
+    setTouchX(null);
+  };
+
   return (
     <section className="relative w-full bg-mist-50 border-b border-mist-300 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-        <div className="relative aspect-[16/9] sm:aspect-[21/9] lg:aspect-[24/9] w-full rounded-2xl overflow-hidden shadow-card bg-brand-800">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-6">
+        <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} className="relative aspect-[4/3] sm:aspect-[21/9] lg:aspect-[24/9] w-full rounded-2xl overflow-hidden shadow-card bg-brand-800">
           
           <AnimatePresence mode="wait">
             <motion.div
@@ -40,15 +50,15 @@ export default function HeroCarousel() {
               />
 
               {/* Gradient Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-r from-brand-950/90 via-brand-900/55 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-brand-950/95 via-brand-900/50 to-transparent" />
 
               {/* Slide Content */}
-              <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-12 md:px-16 max-w-2xl text-white">
-                <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-marigold-300 mb-3">
+              <div className="absolute inset-0 flex flex-col justify-end sm:justify-center px-5 pb-10 sm:pb-0 sm:px-12 md:px-16 max-w-2xl text-white">
+                <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-marigold-300 mb-1.5 sm:mb-3 truncate">
                   {slides[currentSlide].tag} • {slides[currentSlide].badge}
                 </span>
 
-                <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-2 leading-tight">
+                <h2 className="font-display text-[22px] sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-3 sm:mb-2 leading-[1.1] line-clamp-2">
                   {slides[currentSlide].title}
                 </h2>
 
@@ -59,7 +69,7 @@ export default function HeroCarousel() {
                 <div>
                   <Link
                     to={slides[currentSlide].link}
-                    className="inline-flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 bg-marigold-400 text-black text-xs uppercase tracking-wider font-bold rounded-full hover:bg-marigold-300 transition-all active:scale-95 shadow-lift"
+                    className="inline-flex items-center gap-2 px-4 sm:px-7 py-2 sm:py-3 bg-marigold-400 text-black text-xs uppercase tracking-wider font-bold rounded-full hover:bg-marigold-300 transition-all active:scale-95 shadow-lift"
                   >
                     <span>{slides[currentSlide].cta}</span>
                     <span className="font-display">→</span>
@@ -73,28 +83,28 @@ export default function HeroCarousel() {
           <button
             onClick={prevSlide}
             aria-label="Previous slide"
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all z-20"
+            className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/20 text-white items-center justify-center transition-all z-20"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={nextSlide}
             aria-label="Next slide"
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all z-20"
+            className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-md border border-white/20 text-white items-center justify-center transition-all z-20"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
 
           {/* Slide Indicators */}
-          <div className="absolute bottom-3 right-6 flex items-center gap-1.5 z-20">
-            <span className="text-[10px] font-bold text-white/70 mr-1 tabular-nums">{String(currentSlide + 1).padStart(2, '0')} / {slides.length}</span>
+          <div className="absolute bottom-3.5 left-5 sm:left-auto sm:right-6 flex items-center gap-1 sm:gap-1.5 z-20">
+            <span className="hidden sm:inline text-[10px] font-bold text-white/70 mr-1 tabular-nums">{String(currentSlide + 1).padStart(2, '0')} / {slides.length}</span>
             {slides.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentSlide(idx)}
                 aria-label={`Go to slide ${idx + 1}`}
                 className={`h-1.5 transition-all rounded-full ${
-                  currentSlide === idx ? 'w-6 bg-marigold-400' : 'w-1.5 bg-white/40 hover:bg-white/60'
+                  currentSlide === idx ? 'w-5 sm:w-6 bg-marigold-400' : 'w-1.5 bg-white/40 hover:bg-white/60'
                 }`}
               />
             ))}

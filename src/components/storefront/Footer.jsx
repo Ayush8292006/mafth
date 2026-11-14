@@ -74,7 +74,7 @@ export default function Footer() {
       </div>
 
       {/* 2. NEWSLETTER & EDITORIAL SECTION */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 border-b border-white/10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7">
             <span className="text-[10px] uppercase font-bold text-mist-400 tracking-widest block mb-1">
@@ -106,7 +106,7 @@ export default function Footer() {
       </div>
 
       {/* 3. MAIN DIRECTORY LINKS */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           
           {/* Brand & Manifesto Column */}

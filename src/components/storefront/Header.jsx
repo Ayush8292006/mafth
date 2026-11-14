@@ -131,7 +131,7 @@ export default function Header() {
               className="flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none"
             >
               <MapPin className="w-3.5 h-3.5 text-marigold-400" />
-              <span>Deliver to:</span>
+              <span className="hidden sm:inline">Deliver to:</span>
               <strong className="text-white font-semibold underline decoration-marigold-400 underline-offset-2">
                 {deliveryCity} {deliveryPincode}
               </strong>
@@ -150,7 +150,8 @@ export default function Header() {
               className="flex items-center gap-1.5 bg-marigold-400 text-black rounded-full px-2.5 py-0.5 font-bold hover:bg-marigold-300 transition-colors"
             >
               <Gift className="w-3 h-3" />
-              <span>Offers & New Launches</span>
+              <span className="sm:hidden">Offers</span>
+              <span className="hidden sm:inline">Offers & New Launches</span>
             </button>
             {isStaff && (
               <Link
@@ -166,23 +167,23 @@ export default function Header() {
       </div>
 
       {/* 2. MAIN HEADER BAR */}
-      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 sm:gap-6 transition-all duration-300 ${isScrolled ? 'py-2 sm:py-2.5' : 'py-3 sm:py-3.5'}`}>
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap md:flex-nowrap items-center justify-between gap-x-3 gap-y-2.5 sm:gap-x-6 transition-all duration-300 ${isScrolled ? 'py-2 sm:py-2.5' : 'py-2.5 sm:py-3.5'}`}>
         
         {/* Brand logo */}
         <div className="flex items-center gap-3">
           <Logo size="md" />
-          <div className="hidden sm:block">
+          <div>
             <span className="block font-display text-lg font-extrabold tracking-tight text-brand-700 leading-none">
               MAFTH
             </span>
             <span className="block text-[9px] uppercase tracking-widest text-brand-600 font-medium">
-              Multi-Vendor Marketplace
+              <span className="hidden sm:inline">Multi-Vendor </span>Marketplace
             </span>
           </div>
         </div>
 
         {/* Large Smart Search Bar */}
-        <div ref={searchRef} className="flex-1 max-w-2xl relative">
+        <div ref={searchRef} className="order-last md:order-none basis-full md:basis-auto md:flex-1 max-w-2xl relative">
           <form
             onSubmit={handleSearchSubmit}
             className="flex items-center border-2 border-brand-700 rounded-full overflow-hidden transition-colors bg-white focus-within:ring-4 focus-within:ring-brand-100"
@@ -209,13 +210,13 @@ export default function Header() {
               <Search className="w-4 h-4 text-grey-400 mr-2 flex-shrink-0" />
               <input
                 type="text"
-                placeholder="Search products or shops across 10 departments..."
+                placeholder="Search products, brands & shops"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => {
                   if (suggestions.length > 0) setIsSearchOpen(true);
                 }}
-                className="w-full text-xs sm:text-sm bg-transparent py-2 focus:outline-none placeholder:text-grey-400 text-black"
+                className="w-full min-w-0 text-sm bg-transparent py-2 focus:outline-none placeholder:text-grey-400 text-black"
               />
               {searchQuery && (
                 <button
@@ -233,7 +234,7 @@ export default function Header() {
             <button
               type="submit"
               aria-label="Search catalogue"
-              className="px-4 sm:px-6 h-10 bg-marigold-400 text-black hover:bg-marigold-300 transition-colors flex items-center justify-center text-xs font-bold uppercase tracking-wider"
+              className="px-4 sm:px-6 h-9 md:h-10 bg-marigold-400 text-black hover:bg-marigold-300 transition-colors flex items-center justify-center text-xs font-bold uppercase tracking-wider"
             >
               <Search className="w-4 h-4 sm:hidden" />
               <span className="hidden sm:inline">Search</span>
@@ -279,7 +280,7 @@ export default function Header() {
         </div>
 
         {/* Right Action Icons: Account, Wishlist, Cart */}
-        <div className="flex items-center gap-2 sm:gap-4">
+        <div className="flex items-center gap-1 sm:gap-4">
           
           {/* Account Menu */}
           <div className="relative">

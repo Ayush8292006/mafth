@@ -100,15 +100,15 @@ export default function ProductCard({ product }) {
       </div>
 
       {/* Product Details */}
-      <div className="p-3 sm:p-4 flex-1 flex flex-col justify-between">
+      <div className="p-2.5 sm:p-4 flex-1 flex flex-col justify-between min-w-0">
         <div>
           {/* Vendor / Brand */}
-          <div className="flex items-center justify-between text-[11px] text-brand-600 font-medium mb-1">
-            <span className="uppercase tracking-wider truncate">{product.brand}</span>
-            <div className="flex items-center gap-1 text-black font-semibold">
+          <div className="flex items-center justify-between gap-1 text-[10px] sm:text-[11px] text-brand-600 font-medium mb-1 min-w-0">
+            <span className="uppercase tracking-wide truncate min-w-0">{product.brand}</span>
+            <div className="flex items-center gap-0.5 sm:gap-1 text-black font-semibold flex-shrink-0">
               <Star className="w-3 h-3 fill-marigold-500 text-marigold-500" />
               <span>{product.rating}</span>
-              <span className="text-grey-400 text-[10px]">({product.reviewsCount})</span>
+              <span className="hidden sm:inline text-grey-400 text-[10px]">({product.reviewsCount})</span>
             </div>
           </div>
 
@@ -121,20 +121,20 @@ export default function ProductCard({ product }) {
           </Link>
           <Link
             to={`/vendor/${product.vendorId}`}
-            className="mt-1 inline-flex items-center gap-1 text-[11px] text-grey-500 hover:text-brand-700"
+            className="mt-1 flex items-center gap-1 text-[10px] sm:text-[11px] text-grey-500 hover:text-brand-700 min-w-0"
           >
-            Sold by <span className="font-semibold text-brand-700 truncate max-w-[140px]">{product.vendorName}</span>
+            <span className="flex-shrink-0">by</span> <span className="font-semibold text-brand-700 truncate">{product.vendorName}</span>
           </Link>
         </div>
 
         {/* Price & Delivery */}
-        <div className="mt-3 pt-2 border-t border-mist-100">
-          <div className="flex items-baseline gap-2">
+        <div className="mt-2 sm:mt-3 pt-2 border-t border-mist-100">
+          <div className="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
             <span className="font-bold text-sm sm:text-base text-black">
               {formatPrice(product.price)}
             </span>
             {product.mrp > product.price && (
-              <span className="text-xs text-grey-400 line-through">
+              <span className="text-[11px] sm:text-xs text-grey-400 line-through">
                 {formatPrice(product.mrp)}
               </span>
             )}
@@ -142,14 +142,14 @@ export default function ProductCard({ product }) {
 
           <div className="text-[10px] text-grey-500 mt-1 flex items-center justify-between">
             <span className="text-status-success font-medium">Free Delivery</span>
-            <span className="truncate text-grey-400 font-sans">{product.deliveryEstimate}</span>
+            <span className="hidden sm:inline truncate text-grey-400 font-sans">{product.deliveryEstimate}</span>
           </div>
 
           {/* Mobile Quick Add Button */}
-          <div className="sm:hidden mt-2 pt-2 border-t border-mist-100">
+          <div className="sm:hidden mt-2">
             <button
               onClick={handleQuickAdd}
-              className={`w-full py-1.5 text-[11px] uppercase tracking-wider font-semibold rounded flex items-center justify-center gap-1 ${
+              className={`w-full py-2 text-[11px] uppercase tracking-wide font-bold rounded-full flex items-center justify-center gap-1 ${
                 justAdded ? 'bg-status-success text-white' : 'border border-brand-700 text-brand-700'
               }`}
             >

@@ -93,7 +93,7 @@ export default function OffersPopup() {
     <AnimatePresence>
       {offersOpen && (
         <motion.div
-          className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-3 sm:p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -104,7 +104,7 @@ export default function OffersPopup() {
             animate={{ y: 0, scale: 1, opacity: 1 }}
             exit={{ y: 30, opacity: 0 }}
             transition={{ type: 'spring', damping: 24, stiffness: 260 }}
-            className="relative w-full max-w-3xl bg-white rounded-2xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-white rounded-2xl shadow-2xl"
           >
             <button
               onClick={closeOffers}
@@ -137,7 +137,7 @@ export default function OffersPopup() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.35 }}
-                  className="relative h-48 sm:h-auto bg-brand-800"
+                  className="relative h-40 sm:h-auto bg-brand-800"
                 >
                   <img src={o.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
                   <span className="absolute left-4 top-4 chip bg-marigold-400 text-black uppercase tracking-wider">{o.eyebrow}</span>
@@ -151,9 +151,9 @@ export default function OffersPopup() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -16 }}
                   transition={{ duration: 0.3 }}
-                  className="p-6 sm:p-8 flex flex-col justify-center"
+                  className="p-5 sm:p-8 flex flex-col justify-center"
                 >
-                  <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-black leading-tight">{o.title}</h3>
+                  <h3 className="font-display text-xl sm:text-3xl font-extrabold text-black leading-tight">{o.title}</h3>
                   <p className="text-sm text-grey-500 mt-2">{o.text}</p>
                   {o.code && (
                     <button

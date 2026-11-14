@@ -11,7 +11,7 @@ export default function WishlistPage() {
   const { addItem } = useCartStore();
 
   return (
-    <div className="bg-white min-h-screen py-10">
+    <div className="bg-white min-h-screen py-5 sm:py-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -20,7 +20,7 @@ export default function WishlistPage() {
             <span className="text-[11px] uppercase font-bold text-brand-600 tracking-wider">
               Saved Pieces
             </span>
-            <h1 className="font-display text-3xl sm:text-4xl font-bold text-black mt-1">
+            <h1 className="font-display text-2xl sm:text-4xl font-bold text-black mt-1">
               My Wishlist ({items.length})
             </h1>
           </div>
@@ -52,7 +52,7 @@ export default function WishlistPage() {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-6">
             {items.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

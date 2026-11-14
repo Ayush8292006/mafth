@@ -110,7 +110,7 @@ export default function ProductDetailPage() {
         </nav>
 
         {/* 2-Column Product Studio: Gallery + Buy Box */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-16 border-b border-mist-300">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 pb-10 sm:pb-16 border-b border-mist-300">
           
           {/* LEFT: Image Gallery with thumbnail strip */}
           <div className="lg:col-span-7 flex flex-col-reverse sm:flex-row gap-4">
@@ -367,7 +367,7 @@ export default function ProductDetailPage() {
         </div>
 
         {/* Specifications & Guild Authenticity Table */}
-        <div className="py-12 border-b border-mist-300 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="py-8 sm:py-12 border-b border-mist-300 grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h3 className="font-display text-xl font-bold text-black mb-4">
               Materials & Master Guild Specifications
@@ -403,11 +403,11 @@ export default function ProductDetailPage() {
 
         {/* Similar Items Rail */}
         {similar.length > 0 && (
-          <div className="py-12">
+          <div className="py-8 sm:py-12">
             <h3 className="font-display text-2xl font-bold text-black mb-6">
               Similar Handcrafted Items
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-6">
               {similar.map((item) => (
                 <ProductCard key={item.id} product={item} />
               ))}

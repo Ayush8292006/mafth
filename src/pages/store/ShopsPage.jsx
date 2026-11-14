@@ -25,12 +25,12 @@ export default function ShopsPage() {
   return (
     <div className="bg-mist-50 min-h-screen">
       <section className="bg-brand-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-marigold-300 flex items-center gap-2">
               <Store className="w-4 h-4" /> Shop by seller
             </span>
-            <h1 className="font-display text-4xl sm:text-5xl font-extrabold mt-3 leading-tight">
+            <h1 className="font-display text-3xl sm:text-5xl font-extrabold mt-3 leading-tight">
               {shops.filter((s) => s.liveProducts > 0).length} independent shops.<br />
               <span className="text-marigold-400">One cart.</span>
             </h1>
@@ -59,12 +59,12 @@ export default function ShopsPage() {
               </button>
             ))}
           </div>
-          <div className="flex gap-2">
-            <div className="relative">
+          <div className="flex gap-2 w-full lg:w-auto">
+            <div className="relative flex-1 lg:flex-none">
               <Search className="w-4 h-4 text-grey-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <input className="input !py-2 pl-9 !w-56" placeholder="Search shops…" value={q} onChange={(e) => setQ(e.target.value)} />
+              <input className="input !py-2 pl-9 lg:!w-56" placeholder="Search shops…" value={q} onChange={(e) => setQ(e.target.value)} />
             </div>
-            <select className="input !py-2 !w-40" value={sort} onChange={(e) => setSort(e.target.value)}>
+            <select className="input !py-2 !w-32 sm:!w-40 flex-shrink-0" value={sort} onChange={(e) => setSort(e.target.value)}>
               <option value="rating">Top rated</option>
               <option value="products">Most products</option>
               <option value="reviews">Most reviewed</option>
@@ -72,7 +72,7 @@ export default function ShopsPage() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {list.map((s) => (
             <Link
               key={s.id}

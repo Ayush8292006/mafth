@@ -5,15 +5,15 @@ import { ArrowRight } from 'lucide-react';
 export default function EditorialBanner({ inverted = false }) {
   if (inverted) {
     return (
-      <section className="bg-brand-800 text-white border-b border-brand-900 py-16 sm:py-20 overflow-hidden">
+      <section className="bg-brand-800 text-white border-b border-brand-900 py-10 sm:py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-4">
               <span className="text-[11px] uppercase font-bold tracking-widest text-mist-400">
                 02 • THE RAWAT ARCHIVE
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight">
+              <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white leading-tight">
                 Authentic vegetable indigo. Hand-carved teakwood blocks. Centuries of Rajasthani lineage.
               </h2>
               <p className="text-xs sm:text-sm text-white/75 font-light leading-relaxed max-w-lg pt-1">
@@ -61,9 +61,9 @@ export default function EditorialBanner({ inverted = false }) {
   }
 
   return (
-    <section className="bg-mist-50 border-b border-mist-300 py-16 sm:py-20 overflow-hidden">
+    <section className="bg-mist-50 border-b border-mist-300 py-10 sm:py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
           
           <div className="lg:col-span-6 order-2 lg:order-1">
             <div className="relative aspect-[4/3] rounded overflow-hidden border border-mist-300 shadow-sm">
@@ -84,7 +84,7 @@ export default function EditorialBanner({ inverted = false }) {
             <span className="text-[11px] uppercase font-bold tracking-widest text-brand-600">
               01 • EDITORIAL CURATION
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-black leading-tight">
+            <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-medium tracking-tight text-black leading-tight">
               Tactile Living: Where Indian Clay Meets Modern Dining.
             </h2>
             <p className="text-xs sm:text-sm text-grey-600 font-light leading-relaxed max-w-lg pt-1">
